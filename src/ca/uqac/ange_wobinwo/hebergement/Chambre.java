@@ -12,13 +12,14 @@ package ca.uqac.ange_wobinwo.hebergement;
 public class Chambre {
 	private int numero;
 	private static int idCompteur = 0;
-	private Boolean estDisponible;
+	private boolean estDisponible;
 	private TypeChambre typeChambre;
 
 	// Constructeur
 	public Chambre(TypeChambre typeChambre) {
 		this.setNumero(++idCompteur);
 		this.setTypeChambre(typeChambre);
+		this.estDisponible = true;
 	}
 
 	// Getters
@@ -43,7 +44,7 @@ public class Chambre {
 		this.typeChambre = typeChambre;
 	}
 	
-	public void setEstDisponible(Boolean estDisponible) {
+	public void setEstDisponible(boolean estDisponible) {
 		this.estDisponible = estDisponible;
 	}
 	
