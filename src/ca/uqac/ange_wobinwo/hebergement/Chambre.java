@@ -12,6 +12,7 @@ package ca.uqac.ange_wobinwo.hebergement;
 public class Chambre {
 	private int numero;
 	private static int idCompteur = 0;
+	private Boolean estDisponible;
 	private TypeChambre typeChambre;
 
 	// Constructeur
@@ -28,6 +29,10 @@ public class Chambre {
 	public TypeChambre getTypeChambre() {
 		return typeChambre;
 	}
+	
+	public Boolean getEstDisponible() {
+		return estDisponible;
+	}
 
 	// Setters
 	public void setNumero(int numero) {
@@ -36,6 +41,10 @@ public class Chambre {
 
 	public void setTypeChambre(TypeChambre typeChambre) {
 		this.typeChambre = typeChambre;
+	}
+	
+	public void setEstDisponible(Boolean estDisponible) {
+		this.estDisponible = estDisponible;
 	}
 	
 	// Redefinir la methode toString()

@@ -1,5 +1,7 @@
 package ca.uqac.ange_wobinwo.hebergement;
 
+import java.util.ArrayList;
+
 import ca.uqac.ange_wobinwo.region.Rue;
 
 /**
@@ -15,16 +17,17 @@ public class Hebergement {
 	private int id;
 	private static int idCompteur = 0;
 	private String nom;
-	private Service service;
+	private ArrayList<Service> services;
+	private ArrayList<Chambre> chambres;
 	private TypeHebergement typeHebergement;
 	private Rue rue;
 	private int numeroRue;
 
 	// Constructeur
-	public Hebergement(String nom, Service service, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
+	public Hebergement(String nom, Service services, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
 		this.setId(++idCompteur);
 		this.setNom(nom);
-		this.setService(service);
+		this.setService(services);
 		this.setTypeHebergement(typeHebergement);
 		this.setRue(rue);
 		this.setNumeroRue(numeroRue);
@@ -40,7 +43,7 @@ public class Hebergement {
 	}
 	
 	public Service getService() {
-		return service;
+		return services;
 	}
 	
 	public TypeHebergement getTypeHebergement() {
