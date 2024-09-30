@@ -18,6 +18,7 @@ public class Quartier {
 	private String nom;
 	private ArrayList<Rue> rues;
 
+	// Constructeur
 	public Quartier(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);

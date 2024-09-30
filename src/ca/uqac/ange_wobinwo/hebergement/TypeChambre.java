@@ -14,6 +14,7 @@ public class TypeChambre {
 	private static int idCompteur = 0;
 	private String nom;
 
+	// Constructeur
 	public TypeChambre(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);

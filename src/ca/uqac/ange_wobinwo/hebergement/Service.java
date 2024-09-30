@@ -14,6 +14,7 @@ public class Service {
 	private static int idCompteur = 0;
 	private String nom;
 
+	// Constructeur
 	public Service(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);

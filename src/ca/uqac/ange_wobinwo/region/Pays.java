@@ -19,6 +19,7 @@ public class Pays {
 	private String nom;
 	private ArrayList<Province> provinces;
 
+	// Constructeur
 	public Pays(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);

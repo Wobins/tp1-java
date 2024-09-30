@@ -14,6 +14,7 @@ public class Rue {
 	private static int idCompteur = 0;
 	private String nom;
 
+	// Constructeur
 	public Rue(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);

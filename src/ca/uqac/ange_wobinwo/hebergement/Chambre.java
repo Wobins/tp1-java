@@ -14,6 +14,7 @@ public class Chambre {
 	private static int idCompteur = 0;
 	private TypeChambre typeChambre;
 
+	// Constructeur
 	public Chambre(TypeChambre typeChambre) {
 		this.setNumero(++idCompteur);
 		this.setTypeChambre(typeChambre);
@@ -41,7 +42,7 @@ public class Chambre {
 	@Override
     public String toString() {
         return "\n\n\nNom de la classe:\t Chambre" +  "\nDescription:\t Cette classe permet de définir une chambre d'un logement" + 
-        		"\nChamps de la classe:\n\t -numero (numero de la chambre):\t" + this.getNumero() + "\n\t -TypeChambre (type de la chambre):\t" + this.getTypeChambre().getNom();
+        		"\nChamps de la classe:\n\t -numero (numero de la chambre):\t" + this.getNumero() + "\n\t -TypeChambre (type de la chambre):\t Ceci est le nom de ce tyepe uniquement" + this.getTypeChambre().getNom();
     }
 
 }
