@@ -49,34 +49,32 @@ public class Quartier {
 	}
 	
 	// Supprimer une rue du quartier
-	public String supprimerRue(int idRue) {
-		int i = 0;
-		String nomRue = null;
-		
-		for(Rue rue : rues) {
-			if (rue.getId() == idRue) {
-				nomRue = rues.get(i).getNom();
-				rues.remove(i);
-			}
-			
-			++i;
-		}
-		
-		return String.format("La rue %s a ete retiree du quartier %s avec succes", nomRue, nom);
-	}
+//	public String supprimerRue(int idRue) {
+//		int i = 0;
+//		String nomRue = null;
+//		
+//		for(Rue rue : rues) {
+//			if (rue.getId() == idRue) {
+//				nomRue = rues.get(i).getNom();
+//				rues.remove(i);
+//			}
+//			
+//			++i;
+//		}
+//		
+//		return String.format("La rue %s a ete retiree du quartier %s avec succes", nomRue, nom);
+//	}
 	
 	// Supprimer une rue d'un quartier
-	public void supprimerQuartier(int idRue) {
-		String nomRue = null;
+	public void supprimerRue(int idRue) {
+		int resultat = Utilitaires.supprimerElementListe(rues, idRue, Rue::getId);
 		
-		int index = Utilitaires.retrouverIndexElement(rues, idRue, Rue::getId);
-		 
-		if (index != -1) {
-		   nomRue = rues.get(index).getNom(); 
-		   rues.remove(index);
-		   System.out.println(String.format("La rue %s a ete retiree du quartier %s avec succes", nomRue, nom));
+		if (resultat != -1) {
+		   System.out.println(String.format("La rue avec pour id %s a ete retiree du quartier %s avec succes", 
+				   			  				idRue, this.getNom()));
 		} else {
-		    System.out.println("La rue avec pour id " + idRue + " n'a pas ete trouvee.");
+		    System.out.println(String.format("La rue avec pour id %s n'a pas ete trouvee dans le quartier %s.",
+						idRue, this.getNom()));
 		}
 	}
 	

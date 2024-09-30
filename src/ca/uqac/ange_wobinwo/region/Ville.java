@@ -50,18 +50,28 @@ public class Ville {
 	
 	// Supprimer un quartier d'une ville
 	public void supprimerQuartier(int idQuartier) {
-		String nomQuartier = null;
+		int resultat = Utilitaires.supprimerElementListe(quartiers, idQuartier, Quartier::getId);
 		
-		int index = Utilitaires.retrouverIndexElement(quartiers, idQuartier, Quartier::getId);
-		 
-		if (index != -1) {
-			nomQuartier = quartiers.get(index).getNom();
-			quartiers.remove(index);
-		    System.out.println(String.format("Le quartier %s a ete retire de la ville %s avec succes.", 
-				   				nomQuartier, nom));
+		if (resultat != -1) {
+		   System.out.println(String.format("Le quartier avec pour id %s a ete retire de la ville %s avec succes", 
+				   			  				idQuartier, this.getNom()));
 		} else {
-		    System.out.println("Le quartier avec pour id " + idQuartier + " non trouve.");
+		    System.out.println(String.format("Le quartier avec pour id %s n'a pas ete trouve dans la ville %s.",
+		    								idQuartier, this.getNom()));
 		}
+		
+		/*
+		 * String nomQuartier = null;
+		 * 
+		 * int index = Utilitaires.retrouverIndexElement(quartiers, idQuartier,
+		 * Quartier::getId);
+		 * 
+		 * if (index != -1) { nomQuartier = quartiers.get(index).getNom();
+		 * quartiers.remove(index); System.out.println(String.
+		 * format("Le quartier %s a ete retire de la ville %s avec succes.",
+		 * nomQuartier, nom)); } else { System.out.println("Le quartier avec pour id " +
+		 * idQuartier + " non trouve."); }
+		 */
 	}
 	
 	// Redefinir la methode toString()

@@ -53,19 +53,16 @@ public class Pays {
 		provinces.add(province);
 	}
 	
-	// Supprimer une ville d'une province
-	public void supprimerVille(int idProvince) {
-		String nomVille = null;
+	// Supprimer une province d'un pays
+	public void supprimerProvince(int idProvince) {
+		int resultat = Utilitaires.supprimerElementListe(provinces, idProvince, Province::getId);
 		
-		int index = Utilitaires.retrouverIndexElement(provinces, idProvince, Province::getId);
-		 
-		if (index != -1) {
-			nomVille = provinces.get(index).getNom();
-			provinces.remove(index);
-		    System.out.println(String.format("La ville %s a ete retiree de la province %s avec succes.", 
-				   				nomVille, nom));
+		if (resultat != -1) {
+		   System.out.println(String.format("La province avec pour id %s a ete retiree du pays %s avec succes", 
+				   idProvince, this.getNom()));
 		} else {
-		    System.out.println("Le quartier avec pour id " + idProvince + " non trouve.");
+		    System.out.println(String.format("La province avec pour id %s n'a pas ete trouvee dans le pays %s.",
+		    		idProvince, this.getNom()));
 		}
 	}
 	

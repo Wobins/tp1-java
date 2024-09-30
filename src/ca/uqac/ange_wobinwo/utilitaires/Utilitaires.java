@@ -15,14 +15,25 @@ import java.util.function.Function;
 public class Utilitaires {
 
 	// Fonction pour recuperer l'index d'un element d'un List a partir de son id
-	public static <T> int retrouverIndexElement(List<T> list, int id, Function<T, Integer> getIdFunction) {
-        for (int i = 0; i < list.size(); i++) {
-            T element = list.get(i);
+	public static <T> int retrouverIndexElement(List<T> liste, int id, Function<T, Integer> getIdFunction) {
+        for (int i = 0; i < liste.size(); i++) {
+            T element = liste.get(i);
             if (getIdFunction.apply(element) == id) {
                 return i;
             }
         }
         return -1;
     }
+	
+	// Fonction pour supprimer un element d'un objet de type List
+	public static <T> int supprimerElementListe(List<T> liste, int id, Function<T, Integer> getIdFunction) {		
+		int index = retrouverIndexElement(liste, id, getIdFunction);
+		 
+		if (index != -1) {
+			liste.remove(index);
+			return 1;
+		}
+		return -1;
+	}
 
 }

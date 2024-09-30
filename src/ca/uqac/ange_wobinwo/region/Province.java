@@ -18,6 +18,7 @@ public class Province {
 	private String nom;
 	private ArrayList<Ville> villes;
 
+	// Constructeur
 	public Province(String nom) {
 		this.id = ++idCompteur;
 		this.setNom(nom);
@@ -49,17 +50,14 @@ public class Province {
 	
 	// Supprimer une ville d'une province
 	public void supprimerVille(int idVille) {
-		String nomVille = null;
+		int resultat = Utilitaires.supprimerElementListe(villes, idVille, Ville::getId);
 		
-		int index = Utilitaires.retrouverIndexElement(villes, idVille, Ville::getId);
-		 
-		if (index != -1) {
-			nomVille = villes.get(index).getNom();
-			villes.remove(index);
-		    System.out.println(String.format("La ville %s a ete retiree de la province %s avec succes.", 
-				   				nomVille, nom));
+		if (resultat != -1) {
+		   System.out.println(String.format("La ville avec pour id %s a ete retiree de la province %s avec succes", 
+				   			idVille, this.getNom()));
 		} else {
-		    System.out.println("Le quartier avec pour id " + idVille + " non trouve.");
+		    System.out.println(String.format("La ville avec pour id %s n'a pas ete trouvee dans la province %s.",
+					idVille, this.getNom()));
 		}
 	}
 	

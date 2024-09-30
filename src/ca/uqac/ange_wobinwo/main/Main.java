@@ -32,10 +32,10 @@ public class Main {
 		q1.ajouterRue(r1);
 		q1.ajouterRue(r2);
 		q2.ajouterRue(r3);
-//		System.out.println(q1.supprimerRue(1));
+		q1.supprimerRue(1);
 		v1.ajouterQuartier(q1);
-		v1.ajouterQuartier(q2);
-//		v1.supprimerQuartier(2);
+		v3.ajouterQuartier(q2);
+		v3.supprimerQuartier(8);
 		quebec.ajouterVille(v1);
 		quebec.ajouterVille(v2);
 		ontario.ajouterVille(v3);
@@ -53,7 +53,7 @@ public class Main {
 //		System.out.println(c1);
 //		System.out.println(v1);
 //		System.out.println(quebec);
-		System.out.println(canada);
+//		System.out.println(canada);
 //		System.out.println(q1);
 
 	}

@@ -3,6 +3,7 @@ package ca.uqac.ange_wobinwo.hebergement;
 import java.util.ArrayList;
 
 import ca.uqac.ange_wobinwo.region.Rue;
+import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
 
 /**
  * Title:        TP1
@@ -24,10 +25,10 @@ public class Hebergement {
 	private int numeroRue;
 
 	// Constructeur
-	public Hebergement(String nom, Service services, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
+	public Hebergement(String nom, ArrayList<Service> services, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
 		this.setId(++idCompteur);
 		this.setNom(nom);
-		this.setService(services);
+		this.setServices(services);
 		this.setTypeHebergement(typeHebergement);
 		this.setRue(rue);
 		this.setNumeroRue(numeroRue);
@@ -42,7 +43,7 @@ public class Hebergement {
 		return nom;
 	}
 	
-	public Service getService() {
+	public ArrayList<Service> getService() {
 		return services;
 	}
 	
@@ -57,6 +58,10 @@ public class Hebergement {
 	public int getNumeroRue() {
 		return numeroRue;
 	}
+	
+	public ArrayList<Chambre> getChambres() {
+		return chambres;
+	}
 
 	// Setters
 	public void setId(int id) {
@@ -67,8 +72,8 @@ public class Hebergement {
 		this.nom = nom;
 	}
 
-	public void setService(Service service) {
-		this.service = service;
+	public void setServices(ArrayList<Service> services) {
+		this.services = services;
 	}
 
 	public void setTypeHebergement(TypeHebergement typeHebergement) {
@@ -81,6 +86,33 @@ public class Hebergement {
 
 	public void setNumeroRue(int numeroRue) {
 		this.numeroRue = numeroRue;
+	}
+
+	public void setChambres(ArrayList<Chambre> chambres) {
+		this.chambres = chambres;
+	}
+	
+	// Ajouter une chambre a un hebergement
+	public void ajouterChambre(Chambre chambre) {
+		chambres.add(chambre);
+	}
+
+	// Ajouter un service a un hebergement
+	public void ajouterVille(Service service) {
+		services.add(service);
+	}
+	
+	// Supprimer une chambre d'un hebergement
+	public void supprimerChambre(int numeroChambre) {
+		int resultat = Utilitaires.supprimerElementListe(chambres, numeroChambre, Chambre::getNumero);
+		
+		if (resultat != -1) {
+		   System.out.println(String.format("La chambre avec pour numero %s a ete retiree de l'hebergement %s avec succes", 
+				   				numeroChambre, this.getNom()));
+		} else {
+		    System.out.println(String.format("La chambre avec pour id %s n'a pas ete trouve dans la province %s.",
+		    					numeroChambre, this.getNom()));
+		}
 	}
 	
 	
