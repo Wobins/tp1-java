@@ -76,5 +76,10 @@ public class Reservation {
 	public void setEstAnnulee(boolean estAnnulee) {
 		this.estAnnulee = estAnnulee;
 	}
+	
+	@Override
+	public String toString() {
+		return "Reservation: classe servant de modele pour definir une reservations";
+	}
 
 }

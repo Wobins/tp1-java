@@ -57,9 +57,9 @@ public class Client implements Personne {
 	// Redefinir la methode toString()
 	@Override
     public String toString() {
-        return "\n\n\nNom de la classe:\t Rue" +  "\nDescription:\t Cette classe permet de définir une rue ou se situe un hebergement" + 
+        return "\n\n\nNom de la classe:\t Client" +  "\nDescription:\t Cette classe permet de définir un client" + 
         		"\nChamps de la classe:\n\t -id (identifiant du client):\t" + this.getId() + 
-        		"\n\t -nom (nom du client):\t" + this.getNom() +
+        		"\n\t -nom (nom du client):\t" + this.getNom().toUpperCase() +
         		"\n\t -courriel (courriel du client):\t" + this.getCourriel() +
         		"\n\t -numeroPhone (numero de telephone du client):\t" + this.getNumeroPhone();
     }

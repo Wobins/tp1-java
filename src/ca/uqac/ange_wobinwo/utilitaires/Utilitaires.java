@@ -74,4 +74,14 @@ public class Utilitaires {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 
+	@Override
+	public String toString() {
+		return "\n\nClasse des methodes utilitaires pour des actions precises: "
+				+ "\n\t-retrouverIndexElement: \tRetrouver un element dans un objet de type List grace a son index "
+				+ "\n\t-supprimerElementListe: \tSupprimer un element d'un objet de type List "
+				+ "\n\t-effacerConsole: \tEffacer les elements affiches au niveau du terminal";
+	}
+	
+	
+
 }

@@ -52,5 +52,10 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 		reservation.setEstAnnulee(true);		
 	}
 
+	@Override
+	public String toString() {
+		return "SystemeGestionReservationsImpl: classe des reservations";
+	}
 
+	
 }
