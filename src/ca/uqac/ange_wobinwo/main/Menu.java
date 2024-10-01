@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import ca.uqac.ange_wobinwo.hebergement.*;
 import ca.uqac.ange_wobinwo.personne.Client;
 import ca.uqac.ange_wobinwo.region.Rue;
 
 public class Menu {
 	public static List<Client> clients = new ArrayList<Client>();
+	
+	public static List<TypeChambre> typesChambre = new ArrayList<TypeChambre>();
+//	typesChambre.add(new TypeChambre("Suite"));
+	
+	public static List<TypeHebergement> typesHebergement = new ArrayList<TypeHebergement>();
+
+	public static List<Service> servicesOfferts = new ArrayList<Service>();
 	
 	public static void Main() {
 		Scanner scanner = new Scanner(System.in);
@@ -30,7 +38,7 @@ public class Menu {
                     menuClients(scanner);
                     break;
                 case 2:
-//                    menuHebergements(scanner);
+                    menuHebergements(scanner);
                     break;
                 case 3:
 //                    menuReservations(scanner);
@@ -129,5 +137,84 @@ public class Menu {
 
         // ... Traitement des choix du sous-menu
     }
+	
+	private static void menuHebergements(Scanner scanner) {
+		boolean retour = false;
+		
+		while(!retour) {
+			System.out.println("Menu Hebergements : ");
+			System.out.println("a. Ajouter un hebergement");
+			System.out.println("b. Ajouter une chambre a un hebergement");
+			System.out.println("b. Consulter tous les hebergements");
+			System.out.println("c. Consulter les details d'un hebergement");
+			System.out.println("r. Retour");
+			System.out.println("Choisissez une option (a, b ou r): \t");
+			
+			String choix = scanner.nextLine().toLowerCase();
+			
+			switch (choix) {
+			case "a":
+				System.out.println("\n Enregistrement des clients...");
+				boolean continuer = true;
+				while(continuer) {
+					System.out.println("Entrez le nom : \t");
+					String nom = scanner.nextLine().toLowerCase();
+					System.out.println("Entrez le courriel : \t");
+					String courriel = scanner.nextLine().toLowerCase();
+					System.out.println("Entrez le numero de telephone : \t");
+					String numeroTel = scanner.nextLine().toLowerCase();
+					Client _client = new Client(nom, courriel, numeroTel);
+					clients.add(_client);
+					System.out.println(_client);
+					
+					System.out.println("Voulez vous continuer a ajouter des clients ? (Oui/Non) \t");
+					String confirmation = scanner.next();
+					if (confirmation.equalsIgnoreCase("Non")) {
+						System.out.println("Fermeture du programme ...");
+						System.out.println("Merci et a bientot.");
+						continuer = false;
+					}
+					
+				}
+				break;
+			case "b":
+				System.out.println("\n Consultation des clients...");
+				if (clients.isEmpty()) {
+					System.out.println("Aucun client n'a encore ete enregistre dans le systeme");
+				} else {
+					for(Client client : clients) {
+						System.out.println(client);
+					}
+				}
+				break;
+			case "c":
+				System.out.println("\n Consultation des details...");
+				if (clients.isEmpty()) {
+					System.out.println("Aucun client n'a encore ete enregistre dans le systeme");
+				} else {
+					System.out.println("Bien vouloir renseigner l'ID du client : \t");
+					int idClient = scanner.nextInt();
+					
+					for(Client client : clients) {
+						if (client.getId() == idClient) {
+							System.out.println(client);
+						} else {
+							System.out.println("ID du client incorrect. Allez verifier!");
+						}
+					}
+				}
+				break;
+			case "r":
+				retour = true;
+				break;
+			default:
+				System.out.println("Choix invalide. Veuillez réessayer.***1");
+				break;
+			}
+		}
+		// ... Implémentation du menu Produits
+		
+		// ... Traitement des choix du sous-menu
+	}
 
 }

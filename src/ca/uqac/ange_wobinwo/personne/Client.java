@@ -1,6 +1,6 @@
 package ca.uqac.ange_wobinwo.personne;
 
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 /**
  * Title:        TP1
@@ -11,19 +11,18 @@ import java.util.UUID;
  * @version 1.0
  */
 
-public class Client implements Personne {
+public class Client extends PotentielClient {
 	private int id;
 	private static int idCompteur = 0;
-	private String nom;
-	private String courriel;
-	private String numeroPhone;
+	private LocalDateTime datePremierAchat;
 
 	public Client(String nom, String courriel, String numeroPhone) {
 //		this.id = UUID.randomUUID().toString() + "-" + (int)(Math.random() * 101);
+		super(nom, courriel, numeroPhone);
 		this.id = ++idCompteur;
-		this.setNom(nom);
-		this.setCourriel(courriel);
-		this.setNumeroPhone(numeroPhone);
+//		this.setNom(nom);
+//		this.setCourriel(courriel);
+//		this.setNumeroPhone(numeroPhone);
 	}
 	
 	// Getters
@@ -31,29 +30,37 @@ public class Client implements Personne {
 		return id;
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public String getCourriel() {
-		return courriel;
-	}
-
-	public String getNumeroPhone() {
-		return numeroPhone;
+//	public String getNom() {
+//		return nom;
+//	}
+//
+//	public String getCourriel() {
+//		return courriel;
+//	}
+//
+//	public String getNumeroPhone() {
+//		return numeroPhone;
+//	}
+	
+	public LocalDateTime getDatePremierAchat() {
+		return datePremierAchat;
 	}
 
 	//Setters
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public void setCourriel(String courriel) {
-		this.courriel = courriel;
-	}
-
-	public void setNumeroPhone(String numeroPhone) {
-		this.numeroPhone = numeroPhone;
+//	public void setNom(String nom) {
+//		this.nom = nom;
+//	}
+//
+//	public void setCourriel(String courriel) {
+//		this.courriel = courriel;
+//	}
+//
+//	public void setNumeroPhone(String numeroPhone) {
+//		this.numeroPhone = numeroPhone;
+//	}
+	
+	public void setDatePremierAchat(LocalDateTime datePremierAchat) {
+		this.datePremierAchat = datePremierAchat;
 	}
 	
 	// Redefinir la methode toString()
