@@ -49,21 +49,19 @@ public class Quartier {
 	}
 	
 	// Supprimer une rue du quartier
-//	public String supprimerRue(int idRue) {
-//		int i = 0;
-//		String nomRue = null;
-//		
-//		for(Rue rue : rues) {
-//			if (rue.getId() == idRue) {
-//				nomRue = rues.get(i).getNom();
-//				rues.remove(i);
-//			}
-//			
-//			++i;
-//		}
-//		
-//		return String.format("La rue %s a ete retiree du quartier %s avec succes", nomRue, nom);
-//	}
+	/*
+	 * public String supprimerRue(int idRue) { 
+	 * int i = 0; 
+	 * String nomRue = null;
+	 * 
+	 * for(Rue rue : rues) { if (rue.getId() == idRue) { nomRue =
+	 * rues.get(i).getNom(); rues.remove(i); }
+	 * 
+	 * ++i; }
+	 * 
+	 * return String.format("La rue %s a ete retiree du quartier %s avec succes",
+	 * nomRue, nom); }
+	 */
 	
 	// Supprimer une rue d'un quartier
 	public void supprimerRue(int idRue) {

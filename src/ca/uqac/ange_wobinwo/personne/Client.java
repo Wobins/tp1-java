@@ -12,20 +12,22 @@ import java.util.UUID;
  */
 
 public class Client implements Personne {
-	private String id;
+	private int id;
+	private static int idCompteur = 0;
 	private String nom;
 	private String courriel;
 	private String numeroPhone;
 
 	public Client(String nom, String courriel, String numeroPhone) {
-		this.id = UUID.randomUUID().toString() + "-" + (int)(Math.random() * 101);
+//		this.id = UUID.randomUUID().toString() + "-" + (int)(Math.random() * 101);
+		this.id = ++idCompteur;
 		this.setNom(nom);
 		this.setCourriel(courriel);
 		this.setNumeroPhone(numeroPhone);
 	}
 	
 	// Getters
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 

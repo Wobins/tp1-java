@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import ca.uqac.ange_wobinwo.personne.Client;
+import ca.uqac.ange_wobinwo.region.Rue;
 
 public class Menu {
 	public static List<Client> clients = new ArrayList<Client>();
@@ -14,13 +15,13 @@ public class Menu {
         boolean continuer = true; // variable pour checker si l'utilisateur veut sortir du programme
 
         while (continuer) {
-            System.out.println("Menu principal : ");
-            System.out.println("1. Clients");
-            System.out.println("2. Hebergements");
-            System.out.println("3. Reservations");
-            System.out.println("4. Besoins");
-            System.out.println("0. Quitter");
-            System.out.println("Veuillez faire un choix (1, 2, 3, 4 ou 0): \t");
+            System.out.println("\n\n\nMenu principal : ");
+            System.out.println("\t 1. Clients");
+            System.out.println("\t 2. Hebergements");
+            System.out.println("\t 3. Reservations");
+            System.out.println("\t 4. Besoins");
+            System.out.println("\t 0. Quitter");
+            System.out.println("\t Veuillez faire un choix (1, 2, 3, 4 ou 0): \t");
 
             int choixPrincipal = scanner.nextInt();
 
@@ -44,7 +45,7 @@ public class Menu {
                     }
                     break;
                 default:
-                    System.out.println("Choix invalide. Veuillez reesayer");
+                    System.out.println("Choix invalide. Veuillez reesayer *****0");
             }
         }
         
@@ -66,7 +67,7 @@ public class Menu {
 
             switch (choix) {
                 case "a":
-                	System.out.println("Enregistrement des clients...");
+                	System.out.println("\n Enregistrement des clients...");
                 	boolean continuer = true;
                 	while(continuer) {
                 		System.out.println("Entrez le nom : \t");
@@ -90,18 +91,37 @@ public class Menu {
                 	}
                     break;
                 case "b":
-                    System.out.println("Consultation des clients...");
-                    // Code pour consulter les produits
+                    System.out.println("\n Consultation des clients...");
+                    if (clients.isEmpty()) {
+                    	System.out.println("Aucun client n'a encore ete enregistre dans le systeme");
+                    } else {
+                    	for(Client client : clients) {
+                    		System.out.println(client);
+                    	}
+                    }
                     break;
                 case "c":
-                    System.out.println("Suppression des produits...");
-                    // Code pour supprimer les produits
+                    System.out.println("\n Consultation des details...");
+                    if (clients.isEmpty()) {
+                    	System.out.println("Aucun client n'a encore ete enregistre dans le systeme");
+                    } else {
+                    	System.out.println("Bien vouloir renseigner l'ID du client : \t");
+                    	int idClient = scanner.nextInt();
+                    	
+                    	for(Client client : clients) {
+                    		if (client.getId() == idClient) {
+                    			System.out.println(client);
+                    		} else {
+                    			System.out.println("ID du client incorrect. Allez verifier!");
+                    		}
+                    	}
+                    }
                     break;
                 case "r":
                     retour = true;
                     break;
                 default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    System.out.println("Choix invalide. Veuillez réessayer.***1");
                     break;
             }
 		}
