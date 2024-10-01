@@ -33,7 +33,7 @@ public class TypeHebergement {
 		this.nom = nom;
 	}
 	
-	// Redefinit la methode toString()
+	// Redefinir la methode toString()
 	@Override
     public String toString() {
         return "\n\n\nNom de la classe:\t TypeHebergement" +  "\nDescription:\t Cette classe permet de définir un type d'hebergement" + 

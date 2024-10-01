@@ -14,11 +14,13 @@ public class Chambre {
 	private static int idCompteur = 0;
 	private boolean estDisponible;
 	private TypeChambre typeChambre;
+	private double tarifNuitee;
 
 	// Constructeur
-	public Chambre(TypeChambre typeChambre) {
+	public Chambre(TypeChambre typeChambre, double tarif) {
 		this.setNumero(++idCompteur);
 		this.setTypeChambre(typeChambre);
+		this.setTarifNuitee(tarif);
 		this.estDisponible = true;
 	}
 
@@ -34,6 +36,10 @@ public class Chambre {
 	public Boolean getEstDisponible() {
 		return estDisponible;
 	}
+	
+	public double getTarifNuitee() {
+		return tarifNuitee;
+	}
 
 	// Setters
 	public void setNumero(int numero) {
@@ -48,11 +54,17 @@ public class Chambre {
 		this.estDisponible = estDisponible;
 	}
 	
+	public void setTarifNuitee(double tarifNuitee) {
+		this.tarifNuitee = tarifNuitee;
+	}
+	
 	// Redefinir la methode toString()
 	@Override
     public String toString() {
         return "\n\n\nNom de la classe:\t Chambre" +  "\nDescription:\t Cette classe permet de définir une chambre d'un logement" + 
-        		"\nChamps de la classe:\n\t -numero (numero de la chambre):\t" + this.getNumero() + "\n\t -TypeChambre (type de la chambre):\t Ceci est le nom de ce tyepe uniquement" + this.getTypeChambre().getNom();
+        		"\nChamps de la classe:\n\t -numero (numero de la chambre):\t" + this.getNumero() + 
+        		"\n\t -TypeChambre (type de la chambre):\t " + this.getTypeChambre().getNom() + " (id: " +this.getTypeChambre().getId() + ")" +
+        		"\n\t -tarifNuitee (tarif par nuitee de la chambre):\t " + this.getTarifNuitee();
     }
 
 }

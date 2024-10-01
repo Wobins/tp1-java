@@ -26,12 +26,11 @@ public class Hebergement {
 	private int numeroRue;
 
 	// Constructeur
-	public Hebergement(String nom, ArrayList<Service> services, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
+	public Hebergement(String nom, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
 		this.setId(++idCompteur);
 		this.setNom(nom);
-		this.setServices(services);
+		this.services = new ArrayList<Service>();
 		this.chambres = new ArrayList<Chambre>();
-		this.nombreChambres = this.getChambres().size();
 		this.setTypeHebergement(typeHebergement);
 		this.setRue(rue);
 		this.setNumeroRue(numeroRue);
@@ -67,6 +66,7 @@ public class Hebergement {
 	}
 
 	public int getNombreChambres() {
+		nombreChambres = chambres.size();
 		return nombreChambres;
 	}
 
@@ -105,7 +105,7 @@ public class Hebergement {
 	}
 
 	// Ajouter un service a un hebergement
-	public void ajouterVille(Service service) {
+	public void ajouterService(Service service) {
 		services.add(service);
 	}
 	
@@ -114,9 +114,6 @@ public class Hebergement {
 		int resultat = Utilitaires.supprimerElementListe(chambres, numeroChambre, Chambre::getNumero);
 		
 		if (resultat != -1) {
-		   int index = Utilitaires.retrouverIndexElement(chambres, id, Chambre::getNumero);	
-		   this.getChambres().get(index).setEstDisponible(false); // Rendre la chambre supprimee indisponible
-		   
 		   System.out.println(String.format("La chambre avec pour numero %s a ete retiree de l'hebergement %s avec succes et n'est plus disponible pour aucune reservation desormais", 
 				   				numeroChambre, this.getNom()));
 		} else {
@@ -146,16 +143,16 @@ public class Hebergement {
 		
 		// Parcourir toutes les chambres presentes dans l'hebergement
 		for(Chambre chambre : this.getChambres()) {
-			listeChambres.append("-id:").append(Integer.toString(chambre.getNumero()))
-					.append("\t-type:").append(chambre.getTypeChambre())
-					.append("\t-estDisponible:").append(chambre.getEstDisponible())
+			listeChambres.append("\n\t\t-id: ").append(Integer.toString(chambre.getNumero()))
+					.append("\t-type: ").append(chambre.getTypeChambre().getNom())
+					.append("\t-estDisponible: ").append(chambre.getEstDisponible())
 					.append("\n\t\t");
 		}
 
 		// Parcourir toutes les services offerts par l'hebergement
 		for(Service service : this.getServices()) {
-			listeServices.append("-id:").append(Integer.toString(service.getId()))
-						.append("\t-nom:").append(service.getNom())
+			listeServices.append("\n\t\t-id: ").append(Integer.toString(service.getId()))
+						.append("\t-nom: ").append(service.getNom())
 						.append("\n\t\t");
 		}
 		

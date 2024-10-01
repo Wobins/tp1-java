@@ -1,5 +1,6 @@
 package ca.uqac.ange_wobinwo.utilitaires;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
 
@@ -34,6 +35,43 @@ public class Utilitaires {
 			return 1;
 		}
 		return -1;
+	}
+	
+	public static void effacerConsole() {
+		/*try {
+            // Determine the appropriate command for clearing the console based on the operating system
+            String command;
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                command = "cmd /c cls";
+            } else if (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Unix")) {
+                command = "clear";
+            } else {
+                // Handle other operating systems or throw an exception if not supported
+                throw new RuntimeException("Unsupported operating system");
+            }
+
+            // Create a ProcessBuilder object with the command
+            ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
+
+            // Start the process
+            Process process = processBuilder.start();
+
+            // Wait for the process to finish
+            process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }*/
+		
+		/*try { 
+            if (System.getProperty("os.name").contains("Windows")) { 
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
+            } else { 
+                new ProcessBuilder("clear").inheritIO().start().waitFor(); 
+            } 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+        } */
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 
 }
