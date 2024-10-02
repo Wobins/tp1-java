@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Client extends PotentielClient {
 	private int id;
 	private static int idCompteur = 0;
-	private LocalDateTime datePremierAchat;
+	private LocalDateTime datePremiereReservation;
 
 	public Client(String nom, String courriel, String numeroPhone) {
 //		this.id = UUID.randomUUID().toString() + "-" + (int)(Math.random() * 101);
@@ -42,8 +42,8 @@ public class Client extends PotentielClient {
 //		return numeroPhone;
 //	}
 	
-	public LocalDateTime getDatePremierAchat() {
-		return datePremierAchat;
+	public LocalDateTime getDatePremiereReservation() {
+		return datePremiereReservation;
 	}
 
 	//Setters
@@ -59,8 +59,8 @@ public class Client extends PotentielClient {
 //		this.numeroPhone = numeroPhone;
 //	}
 	
-	public void setDatePremierAchat(LocalDateTime datePremierAchat) {
-		this.datePremierAchat = datePremierAchat;
+	public void setDatePremiereReservation(LocalDateTime _datePremiereReservation) {
+		this.datePremiereReservation = _datePremiereReservation;
 	}
 	
 	// Redefinir la methode toString()

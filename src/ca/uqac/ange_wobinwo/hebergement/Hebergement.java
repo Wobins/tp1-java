@@ -2,6 +2,7 @@ package ca.uqac.ange_wobinwo.hebergement;
 
 import java.util.ArrayList;
 
+import ca.uqac.ange_wobinwo.region.Adresse;
 import ca.uqac.ange_wobinwo.region.Rue;
 import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
 
@@ -22,18 +23,14 @@ public class Hebergement {
 	private ArrayList<Chambre> chambres;
 	private int nombreChambres;
 	private TypeHebergement typeHebergement;
-	private Rue rue;
-	private int numeroRue;
+	private Adresse adresse;
 
 	// Constructeur
-	public Hebergement(String nom, TypeHebergement typeHebergement, Rue rue, int numeroRue) {
+	public Hebergement(String nom) {
 		this.setId(++idCompteur);
 		this.setNom(nom);
 		this.services = new ArrayList<Service>();
 		this.chambres = new ArrayList<Chambre>();
-		this.setTypeHebergement(typeHebergement);
-		this.setRue(rue);
-		this.setNumeroRue(numeroRue);
 	}
 
 	// Getters
@@ -41,6 +38,10 @@ public class Hebergement {
 		return id;
 	}
 	
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -51,14 +52,6 @@ public class Hebergement {
 	
 	public TypeHebergement getTypeHebergement() {
 		return typeHebergement;
-	}
-	
-	public Rue getRue() {
-		return rue;
-	}
-	
-	public int getNumeroRue() {
-		return numeroRue;
 	}
 	
 	public ArrayList<Chambre> getChambres() {
@@ -75,6 +68,10 @@ public class Hebergement {
 		this.id = id;
 	}
 
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -85,14 +82,6 @@ public class Hebergement {
 
 	public void setTypeHebergement(TypeHebergement typeHebergement) {
 		this.typeHebergement = typeHebergement;
-	}
-
-	public void setRue(Rue rue) {
-		this.rue = rue;
-	}
-
-	public void setNumeroRue(int numeroRue) {
-		this.numeroRue = numeroRue;
 	}
 
 	public void setChambres(ArrayList<Chambre> chambres) {
@@ -111,7 +100,7 @@ public class Hebergement {
 	
 	// Supprimer une chambre d'un hebergement
 	public void supprimerChambre(int numeroChambre) {
-		int resultat = Utilitaires.supprimerElementListe(chambres, numeroChambre, Chambre::getNumero);
+		int resultat = Utilitaires.supprimerElementListe(chambres, numeroChambre, Chambre::getId);
 		
 		if (resultat != -1) {
 		   System.out.println(String.format("La chambre avec pour numero %s a ete retiree de l'hebergement %s avec succes et n'est plus disponible pour aucune reservation desormais", 
@@ -143,7 +132,7 @@ public class Hebergement {
 		
 		// Parcourir toutes les chambres presentes dans l'hebergement
 		for(Chambre chambre : this.getChambres()) {
-			listeChambres.append("\n\t\t-id: ").append(Integer.toString(chambre.getNumero()))
+			listeChambres.append("\n\t\t-id: ").append(Integer.toString(chambre.getId()))
 					.append("\t-type: ").append(chambre.getTypeChambre().getNom())
 					.append("\t-estDisponible: ").append(chambre.getEstDisponible())
 					.append("\n\t\t");
@@ -159,8 +148,11 @@ public class Hebergement {
         return "\n\n\n\nNom de la classe:\t Hebergement" +  "\nDescription:\t Cette classe permet de définir un hebergement" + 
         		"\nChamps de la classe:\n\t -id (identifiant du service):\t" + this.getId() + 
         		"\n\t -nom (nom de l'hebergement):\t" + this.getNom() +
-    			"\n\t -rue (rue de l'hebergement):\t" + this.getRue().getNom() + " (id: " + this.getRue().getId() + ")" +
-        		"\n\t -numeroRue (numero de la rue de l'hebergement):\t" + this.getNumeroRue() +
+    			"\n\t -Adresse (adresse de l'hebergement):\t" + this.getAdresse().getNumeroRue()
+    													 + " RUE " + this.getAdresse().getRue()
+    													 + ", " + this.getAdresse().getVille() 
+    													 + ", " + this.getAdresse().getProvince()
+    													 + ", " + this.getAdresse().getPays() +
 		        "\n\t -services (les services offerts par l'hebergement):\t" + listeServices +
 		        "\n\t -nombreChambres (les chambres de l'hebergement):\t" + this.getNombreChambres() +
 		        "\n\t -chambres (les chambres de l'hebergement):\t" + listeChambres;

@@ -37,8 +37,10 @@ public class TypeChambre {
 	// Redefinit la methode toString()
 	@Override
     public String toString() {
-        return "\n\n\nNom de la classe:\t TypeChambre" +  "\nDescription:\t Cette classe permet de définir un type de chambre" + 
-        		"\nChamps de la classe:\n\t -id (identifiant du type):\t" + this.getId() + "\n\t -nom (nom du type):\t" + this.getNom();
+        return "\n\n\nNom de la classe:\t TypeChambre" 
+        		+  "\nDescription:\t Cette classe permet de définir un type de chambre"
+        		+ "\nChamps de la classe:\n\t -id (identifiant du type):\t" + this.getId() 
+        		+ "\n\t -nom (nom du type):\t" + this.getNom();
     }
 
 }

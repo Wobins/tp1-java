@@ -10,7 +10,7 @@ package ca.uqac.ange_wobinwo.hebergement;
  */
 
 public class Chambre {
-	private int numero;
+	private int id;
 	private static int idCompteur = 0;
 	private boolean estDisponible;
 	private TypeChambre typeChambre;
@@ -18,15 +18,15 @@ public class Chambre {
 
 	// Constructeur
 	public Chambre(TypeChambre typeChambre, double tarif) {
-		this.setNumero(++idCompteur);
+		this.setId(++idCompteur);
 		this.setTypeChambre(typeChambre);
 		this.setTarifNuitee(tarif);
 		this.estDisponible = true;
 	}
 
 	// Getters
-	public int getNumero() {
-		return numero;
+	public int getId() {
+		return id;
 	}
 	
 	public TypeChambre getTypeChambre() {
@@ -42,8 +42,8 @@ public class Chambre {
 	}
 
 	// Setters
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(int numero) {
+		this.id = numero;
 	}
 
 	public void setTypeChambre(TypeChambre typeChambre) {
@@ -62,7 +62,7 @@ public class Chambre {
 	@Override
     public String toString() {
         return "\n\n\nNom de la classe:\t Chambre" +  "\nDescription:\t Cette classe permet de définir une chambre d'un logement" + 
-        		"\nChamps de la classe:\n\t -numero (numero de la chambre):\t" + this.getNumero() + 
+        		"\nChamps de la classe:\n\t -id (id de la chambre):\t" + this.getId() + 
         		"\n\t -TypeChambre (type de la chambre):\t " + this.getTypeChambre().getNom() + " (id: " +this.getTypeChambre().getId() + ")" +
         		"\n\t -tarifNuitee (tarif par nuitee de la chambre):\t " + this.getTarifNuitee();
     }
