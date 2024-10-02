@@ -1,6 +1,7 @@
-package reservations;
+package ca.uqac.ange_wobinwo.reservations;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,11 @@ import java.util.List;
  */
 
 public class SystemeGestionReservationsImpl implements SystemeGestionReservations {
-	private List<Reservation> reservations;
+	public List<Reservation> reservations;
+	
+	public SystemeGestionReservationsImpl() {
+		this.reservations = new ArrayList<Reservation>();
+	}
 
 	@Override
 	public List<Reservation> consulterReservations() {
@@ -42,6 +47,7 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 		reservation.setDateCreationReservation(ZonedDateTime.now());
 		reservation.setDateModificationReservation(ZonedDateTime.now());
 		reservation.setEstAnnulee(false);
+		reservations.add(reservation);
 		
 		return reservation;
 	}

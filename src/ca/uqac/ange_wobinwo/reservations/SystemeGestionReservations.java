@@ -1,4 +1,4 @@
-package reservations;
+package ca.uqac.ange_wobinwo.reservations;
 
 import java.util.List;
 
