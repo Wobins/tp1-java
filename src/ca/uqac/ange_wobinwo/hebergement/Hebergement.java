@@ -3,7 +3,6 @@ package ca.uqac.ange_wobinwo.hebergement;
 import java.util.ArrayList;
 
 import ca.uqac.ange_wobinwo.region.Adresse;
-import ca.uqac.ange_wobinwo.region.Rue;
 import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
 
 /**

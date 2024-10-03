@@ -22,8 +22,6 @@ public class Reservation {
 	private Hebergement hebergement;
 	private int nombreNuits;
 	private double montantFacture;
-//	private int chambreID;
-//	private String clientID;
 	private ZonedDateTime dateCreation;
 	private ZonedDateTime dateModification;
 	private LocalDate dateArrivee;
@@ -35,6 +33,7 @@ public class Reservation {
 		this.client = _client;
 		this.chambre = _chambre;
 		this.hebergement = _hebergement;
+		this.montantFacture = _nbreNuits * _chambre.getTarifNuitee();
 		this.setNombreNuits(_nbreNuits);
 		this.setEstAnnulee(false);
 	}
@@ -49,7 +48,7 @@ public class Reservation {
 	}
 
 	public double getMontantFacture() {
-		return this.chambre.getTarifNuitee() * this.nombreNuits;
+		return montantFacture;
 	}
 
 	public void setMontantFacture(double montantFacture) {
@@ -129,6 +128,7 @@ public class Reservation {
 		this.hebergement = hebergement;
 	}
 	
+	// Redefinir la methode toString()
 	@Override
 	public String toString() {
 		return "\n\n\nNom de la classe:\t Reservation" +  "\nDescription:\t Cette classe permet de définir une reservation" + 

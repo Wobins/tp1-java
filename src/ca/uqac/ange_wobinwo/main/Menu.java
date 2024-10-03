@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import ca.uqac.ange_wobinwo.besoin.BesoinService;
 import ca.uqac.ange_wobinwo.hebergement.Chambre;
 import ca.uqac.ange_wobinwo.hebergement.Hebergement;
 import ca.uqac.ange_wobinwo.hebergement.Service;
@@ -83,6 +84,7 @@ public class Menu {
 	public static void Main() {
 		Initialisation();
 		SystemeGestionReservationsImpl systeme_gestion = new SystemeGestionReservationsImpl();
+		BesoinService besoin_service = new BesoinService();
 
 		Scanner scanner = new Scanner(System.in);
 		boolean continuer = true; // variable pour checker si l'utilisateur veut sortir du programme
@@ -109,7 +111,7 @@ public class Menu {
 					menuReservations(scanner, systeme_gestion);
 					break;
 				case 4:
-	//                	menuBesoins(scanner);
+	                menuBesoins(scanner, besoin_service);
 					break;
 				case 0:
 					System.out.println("Êtes-vous sûr de vouloir quitter ? (Oui/Non) \t");
@@ -220,137 +222,138 @@ public class Menu {
 			String choix_2 = scanner.nextLine().toLowerCase();
 
 			switch (choix_2) {
-			case "a":
-				System.out.println("\nEnregistrement d'un hebergement ...");
-				boolean continuer = true;
-				while (continuer) {
-					System.out.println("Entrez le nom de l'hebergement : \t");
-					String nom = scanner.nextLine();
-					Hebergement nouvel_hebergement = new Hebergement(nom);
-
-					System.out.println("Dans quel pays est il situe ? : \t");
-					String _pays = scanner.nextLine().toUpperCase();
-					System.out.println("Dans quelle province est il situe ? : \t");
-					String _province = scanner.nextLine().toUpperCase();
-					System.out.println("Dans quelle ville est il situe ? : \t");
-					String _ville = scanner.nextLine().toUpperCase();
-					System.out.println("Dans quelle rue est il situe ? : \t");
-					String _rue = scanner.nextLine().toUpperCase();
-					System.out.println("Quel est le numero de rue ? : \t");
-					int numero_rue = scanner.nextInt();
-
-					System.out.println(
-							"Veuillez faire 1 choix parmi les types d'hebergement suivants (1, 2, 3 ou 4) : \t");
-					typesHebergement.forEach(_typeHebergement -> System.out
-							.println(_typeHebergement.getId() + ")" + _typeHebergement.getNom()));
-					int type_hebergement_id = scanner.nextInt();
-
-					System.out.println("Veuillez choisir parmi les services offerts suivants (1 ou 2 ou 3 etc.) : \t");
-					servicesOfferts.forEach(
-							serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
-					int service_id = scanner.nextInt();
-					int index = Utilitaires.retrouverIndexElement(servicesOfferts, service_id, Service::getId);
-					nouvel_hebergement.ajouterService(servicesOfferts.get(index));
-
-					Adresse nouvelle_adresse = new Adresse(numero_rue, _rue, _ville, _province, _pays);
-					adresses.add(nouvelle_adresse);
-					nouvel_hebergement.setAdresse(nouvelle_adresse);
-					hebergements.add(nouvel_hebergement);
-					System.out.println(nouvel_hebergement);
-
-					continuer = false;
-				}
-				break;
-			case "b":
-				System.out.println("Ajout d'une chambre a l'hebergement...");
-				if (hebergements.isEmpty()) {
-					System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
-				} else {
-					for (Hebergement hebergement : hebergements) {
-						System.out.println("ID: " + hebergement.getId() + "\tNom: " + hebergement.getNom());
+				case "a":
+					System.out.println("\nEnregistrement d'un hebergement ...");
+					boolean continuer = true;
+					while (continuer) {
+						System.out.println("Entrez le nom de l'hebergement : \t");
+						String nom = scanner.nextLine();
+						Hebergement nouvel_hebergement = new Hebergement(nom);
+	
+						System.out.println("Dans quel pays est il situe ? : \t");
+						String _pays = scanner.nextLine().toUpperCase();
+						System.out.println("Dans quelle province est il situe ? : \t");
+						String _province = scanner.nextLine().toUpperCase();
+						System.out.println("Dans quelle ville est il situe ? : \t");
+						String _ville = scanner.nextLine().toUpperCase();
+						System.out.println("Dans quelle rue est il situe ? : \t");
+						String _rue = scanner.nextLine().toUpperCase();
+						System.out.println("Quel est le numero de rue ? : \t");
+						int numero_rue = scanner.nextInt();
+	
+						System.out.println(
+								"Veuillez faire 1 choix parmi les types d'hebergement suivants (1, 2, 3 ou 4) : \t");
+						typesHebergement.forEach(_typeHebergement -> System.out
+								.println(_typeHebergement.getId() + ")" + _typeHebergement.getNom()));
+	
+						System.out.println("Veuillez choisir parmi les services offerts suivants (1 ou 2 ou 3 etc.) : \t");
+						servicesOfferts.forEach(
+								serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
+						int service_id = scanner.nextInt();
+						int index = Utilitaires.retrouverIndexElement(servicesOfferts, service_id, Service::getId);
+						nouvel_hebergement.ajouterService(servicesOfferts.get(index));
+	
+						Adresse nouvelle_adresse = new Adresse(numero_rue, _rue, _ville, _province, _pays);
+						adresses.add(nouvelle_adresse);
+						nouvel_hebergement.setAdresse(nouvelle_adresse);
+						hebergements.add(nouvel_hebergement);
+						System.out.println(nouvel_hebergement);
+	
+						continuer = false;
 					}
-					System.out.println("Veuillez renseigner l'ID correspondant:\t");
-					int hebergement_id = scanner.nextInt();
-
-					System.out.println(
-							"Veuillez renseigner le tarif de la nuitee dans cette chambre en utilisant si besoin le point (.) pour la deimale:\t");
-					double tarif_chambre = (double) scanner.nextDouble();
-
-					System.out.println(
-							"Veuillez renseigner l'id parmi les types de chambre ci-dessous a ajouter (1, 2 ou 3):\t");
-					typesChambre.forEach(
-							_typeChambre -> System.out.println(_typeChambre.getId() + ")" + _typeChambre.getNom()));
-					int typeChambre_id = scanner.nextInt();
-
-					int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
-							Hebergement::getId);
-					int index_typeChambre = Utilitaires.retrouverIndexElement(typesChambre, typeChambre_id,
-							TypeChambre::getId);
-					Chambre nouvelle_chambre = new Chambre(typesChambre.get(index_typeChambre), tarif_chambre);
-					chambres.add(nouvelle_chambre);
-					hebergements.get(index_hebergement).ajouterChambre(nouvelle_chambre);
-					System.out.print(hebergements.get(index_hebergement));
-				}
-				break;
-			case "c":
-				System.out.println("\nAjout d'un service a l'hebergement...");
-				if (hebergements.isEmpty()) {
-					System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
-				} else {
-					for (Hebergement hebergement : hebergements) {
-						System.out.println("ID: " + hebergement.getId() + "\tNom: " + hebergement.getNom());
+					break;
+				case "b":
+					System.out.println("Ajout d'une chambre a l'hebergement...");
+					if (hebergements.isEmpty()) {
+						System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
+					} else {
+						for (Hebergement hebergement : hebergements) {
+							System.out.println("ID: " + hebergement.getId() + "\tNom: " + hebergement.getNom());
+						}
+						System.out.println("Veuillez renseigner l'ID correspondant:\t");
+						int hebergement_id = scanner.nextInt();
+	
+						System.out.println(
+								"Veuillez renseigner le tarif de la nuitee dans cette chambre en utilisant si besoin le point (.) pour la deimale:\t");
+						double tarif_chambre = (double) scanner.nextDouble();
+	
+						System.out.println(
+								"Veuillez renseigner l'id parmi les types de chambre ci-dessous a ajouter (1, 2 ou 3):\t");
+						typesChambre.forEach(
+								_typeChambre -> System.out.println(_typeChambre.getId() + ")" + _typeChambre.getNom()));
+						int typeChambre_id = scanner.nextInt();
+	
+						int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
+								Hebergement::getId);
+						int index_typeChambre = Utilitaires.retrouverIndexElement(typesChambre, typeChambre_id,
+								TypeChambre::getId);
+						Chambre nouvelle_chambre = new Chambre(typesChambre.get(index_typeChambre), tarif_chambre);
+						chambres.add(nouvelle_chambre);
+						hebergements.get(index_hebergement).ajouterChambre(nouvelle_chambre);
+						System.out.print(hebergements.get(index_hebergement));
 					}
-					System.out.println("Veuillez renseigner l'ID correspondant:\t");
-					int hebergement_id = scanner.nextInt();
-
-					System.out.println("Veuillez renseigner l'id parmi les types de services (1, 2 ou 3):\t");
-					servicesOfferts.forEach(
-							serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
-					int service_id = scanner.nextInt();
-
-					int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
-							Hebergement::getId);
-					int index_ServiceOffert = Utilitaires.retrouverIndexElement(servicesOfferts, service_id,
-							Service::getId);
-
-					hebergements.get(index_hebergement).ajouterService(servicesOfferts.get(index_ServiceOffert));
-					System.out.print(hebergements.get(index_hebergement));
+					break;
+				case "c":
+					System.out.println("\nAjout d'un service a l'hebergement...");
+					if (hebergements.isEmpty()) {
+						System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
+					} else {
+						for (Hebergement hebergement : hebergements) {
+							System.out.println("ID: " + hebergement.getId() + "\tNom: " + hebergement.getNom());
+						}
+						System.out.println("Veuillez renseigner l'ID correspondant:\t");
+						int hebergement_id = scanner.nextInt();
+	
+						System.out.println("Veuillez renseigner l'id parmi les types de services (1, 2 ou 3):\t");
+						servicesOfferts.forEach(
+								serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
+						int service_id = scanner.nextInt();
+	
+						int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
+								Hebergement::getId);
+						int index_ServiceOffert = Utilitaires.retrouverIndexElement(servicesOfferts, service_id,
+								Service::getId);
+	
+						hebergements.get(index_hebergement).ajouterService(servicesOfferts.get(index_ServiceOffert));
+						System.out.print(hebergements.get(index_hebergement));
+					}
+					break;
+				case "d":
+					System.out.println("\nConsultation de tous les hebergements ...");
+					if (hebergements.isEmpty()) {
+						System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
+					} else {
+						hebergements.forEach(hebergement -> System.out.println(hebergement));
+					}
+					break;
+				case "e":
+					System.out.println("\nConsultation des details d'un hebergement...");
+					if (hebergements.isEmpty()) {
+						System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
+					} else {
+						System.out.println("Veuillez renseigner l'id de l'hebergement:\t");
+						System.out.println("ID Hebergement\t\tNom de l'hebergement");
+						hebergements.forEach(
+								hebergement -> System.out.println(hebergement.getId() + "\t\t" + hebergement.getNom()));
+						int hebergement_id = scanner.nextInt();
+	
+						int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
+								Hebergement::getId);
+	
+						System.out.print(hebergements.get(index_hebergement));
+					}
+					break;
+				case "r":
+					retour = true;
+					break;
+				default:
+					System.out.println("Choix invalide. Veuillez réessayer.***2");
+					break;
 				}
-				break;
-			case "d":
-				System.out.println("\nConsultation de tous les hebergements ...");
-				if (hebergements.isEmpty()) {
-					System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
-				} else {
-					hebergements.forEach(hebergement -> System.out.println(hebergement));
-				}
-				break;
-			case "e":
-				System.out.println("\nConsultation des details d'un hebergement...");
-				if (hebergements.isEmpty()) {
-					System.out.println("Aucun hebergement n'a encore ete enregistre dans le systeme");
-				} else {
-					System.out.println("Veuillez renseigner l'id de l'hebergement:\t");
-					System.out.println("ID Hebergement\t\tNom de l'hebergement");
-					hebergements.forEach(
-							hebergement -> System.out.println(hebergement.getId() + "\t\t" + hebergement.getNom()));
-					int hebergement_id = scanner.nextInt();
-
-					int index_hebergement = Utilitaires.retrouverIndexElement(hebergements, hebergement_id,
-							Hebergement::getId);
-
-					System.out.print(hebergements.get(index_hebergement));
-				}
-				break;
-			case "r":
-				retour = true;
-				break;
-			default:
-				System.out.println("Choix invalide. Veuillez réessayer.***2");
-				break;
-			}
 		}
 	}
+	
+	// Menu des operations relatives aux reservations
 
 	private static void menuReservations(Scanner scanner, SystemeGestionReservationsImpl systeme_gestion) {
 		boolean retour = false;
@@ -496,6 +499,45 @@ public class Menu {
 					break;
 				default:
 					System.out.println("Choix invalide. Veuillez réessayer.***3");
+					break;
+			}
+		}
+	}
+	// Menu des operations relatives aux reservations
+	
+
+	// Menu des operations relatives aux besoins
+	private static void menuBesoins(Scanner scanner, BesoinService besoin_service) {
+		boolean retour = false;
+		
+		while (!retour) {
+			System.out.println("\nMenu Besoins : ");
+			System.out.println("a. Chercher une place par rapport a un besoin");
+			System.out.println("b. Consulter tous les besoins en attente");
+			System.out.println("r. Retour");
+			System.out.println("Choisissez une option (a, b, ou r): \t");
+			
+			String choix_4 = scanner.nextLine().toLowerCase();
+			
+			switch (choix_4) {
+				case "a":
+					System.out.println("Recherche d'une chambre ...");
+					
+					break;
+				case "b":
+					System.out.println("Consultation des besoins en attente...");
+					if (besoin_service.ConsulterBesoins().isEmpty()) {
+						System.out.println("Aucune besoin en attente!!");
+					} else {
+						besoin_service.ConsulterBesoins().forEach(besoin -> System.out.println(besoin));
+					}
+										
+					break;
+				case "r":
+					retour = true;
+					break;
+				default:
+					System.out.println("Choix invalide. Veuillez réessayer.***4");
 					break;
 			}
 		}

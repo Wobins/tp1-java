@@ -1,5 +1,6 @@
 package ca.uqac.ange_wobinwo.reservations;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 	public Reservation effectuerReservation(Reservation reservation) {
 		reservation.setDateCreationReservation(ZonedDateTime.now());
 		reservation.setDateModificationReservation(ZonedDateTime.now());
+		reservation.getClient().setDatePremiereReservation(LocalDateTime.now());
 		reservation.setEstAnnulee(false);
 		reservation.getChambre().setEstDisponible(false);
 		reservations.add(reservation);

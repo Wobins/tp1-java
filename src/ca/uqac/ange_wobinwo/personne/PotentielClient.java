@@ -1,5 +1,14 @@
 package ca.uqac.ange_wobinwo.personne;
 
+/**
+ * Title:        TP1
+ * Description:  TP1 pour cours 8INF957
+ * Copyright:    Copyright (c) 2024
+ * School:      UQAC
+ * @author Ange Wobinwo
+ * @version 1.0
+ */
+
 public class PotentielClient {
 	protected String nom;
 	protected String courriel;
