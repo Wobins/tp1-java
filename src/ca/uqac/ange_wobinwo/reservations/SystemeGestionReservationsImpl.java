@@ -47,6 +47,7 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 		reservation.setDateCreationReservation(ZonedDateTime.now());
 		reservation.setDateModificationReservation(ZonedDateTime.now());
 		reservation.setEstAnnulee(false);
+		reservation.getChambre().setEstDisponible(false);
 		reservations.add(reservation);
 		
 		return reservation;
@@ -55,6 +56,8 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 	@Override
 	public void annulerReservation(int id) {
 		Reservation reservation = trouverReservation(id);
+		reservation.setDateModificationReservation(ZonedDateTime.now());
+		reservation.getChambre().setEstDisponible(false);
 		reservation.setEstAnnulee(true);		
 	}
 
