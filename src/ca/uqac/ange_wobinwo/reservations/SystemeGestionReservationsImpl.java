@@ -58,7 +58,9 @@ public class SystemeGestionReservationsImpl implements SystemeGestionReservation
 		Reservation reservation = trouverReservation(id);
 		reservation.setDateModificationReservation(ZonedDateTime.now());
 		reservation.getChambre().setEstDisponible(false);
-		reservation.setEstAnnulee(true);		
+		reservation.setEstAnnulee(true);	
+		System.out.println("Reservation annulee");
+		System.out.println(reservation);
 	}
 
 	@Override

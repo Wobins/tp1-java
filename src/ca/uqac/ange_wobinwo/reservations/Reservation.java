@@ -132,16 +132,16 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "\n\n\nNom de la classe:\t Reservation" +  "\nDescription:\t Cette classe permet de définir une reservation" + 
-        		"\nChamps de la classe:\n\t -id (id de la chambre):\t" + this.getId() + 
+        		"\nChamps de la classe:\n\t -id (id de la reservation):\t" + this.getId() + 
         		"\n\t -dateCreation :\t " + this.getDateCreationReservation().toString() + 
         		"\n\t -dateModification :\t " + this.getDateModificationReservation().toString() + 
         		"\n\t -dateArrivee :\t " + this.getDateArrivee().toString() + 
         		"\n\t -dateDepart :\t " + this.getDateDepart().toString() + 
         		"\n\t -nombreNuits :\t " + this.getNombreNuits() + 
         		"\n\t -montantFacture :\t " + this.getMontantFacture() + 
-        		"\n\t -Client :\t (Id: " + this.getClient().getId() + "Nom:" + this.getClient().getNom() + ")" +
-        		"\n\t -Hebergement :\t (Id: " + this.getHebergement().getId() + "Nom:" + this.getHebergement().getNom() + ")" +
-        		"\n\t -Chambre :\t (Id: " + this.getChambre().getId() + "Nom:" + this.getChambre().getTarifNuitee() + ")" +
+        		"\n\t -Client :\t (Id: " + this.getClient().getId() + "\tNom: " + this.getClient().getNom() + ")" +
+        		"\n\t -Hebergement :\t (Id: " + this.getHebergement().getId() + "\tNom: " + this.getHebergement().getNom() + ")" +
+        		"\n\t -Chambre :\t (Id: " + this.getChambre().getId() + "\tTarif/Nuit: " + this.getChambre().getTarifNuitee() + "$)" +
         		"\n\t -estAnnulee :\t " + this.isEstAnnulee();
 	}
 
