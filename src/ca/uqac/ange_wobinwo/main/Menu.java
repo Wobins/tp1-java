@@ -95,8 +95,8 @@ public class Menu {
 			System.out.println("\t 2. Hebergements");
 			System.out.println("\t 3. Reservations");
 			System.out.println("\t 4. Besoins");
-			System.out.println("\t 0. Quitter");
-			System.out.println("\t Veuillez faire un choix 1 et 4 ou 0 pour quitter: \t");
+			System.out.println("\t 0. Quitter le systeme");
+			System.out.println("\t Veuillez faire un choix (1, 2, 3, 4 ou 0): \t");
 
 			int choixPrincipal = scanner.nextInt();
 			
@@ -142,7 +142,7 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b ou r): \t");
 
-			String choix_1 = scanner.nextLine().toLowerCase();
+			String choix_1 = scanner.next().toLowerCase();
 
 			switch (choix_1) {
 			case "a":
@@ -219,7 +219,7 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b, c, d, e ou r): \t");
 
-			String choix_2 = scanner.nextLine().toLowerCase();
+			String choix_2 = scanner.next().toLowerCase();
 
 			switch (choix_2) {
 				case "a":
@@ -354,7 +354,6 @@ public class Menu {
 	}
 	
 	// Menu des operations relatives aux reservations
-
 	private static void menuReservations(Scanner scanner, SystemeGestionReservationsImpl systeme_gestion) {
 		boolean retour = false;
 
@@ -367,7 +366,7 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b, c, d ou r): \t");
 
-			String choix_3 = scanner.nextLine().toLowerCase();
+			String choix_3 = scanner.next().toLowerCase();
 
 			switch (choix_3) {
 				case "a":
@@ -428,7 +427,7 @@ public class Menu {
 								LocalDate dateArrivee = null;
 								while(dateArrivee == null) {
 									System.out.println("Renseigner la date d'arrivee (format yyyy-MM-dd) :\t");
-									String dateSaisie = scanner.nextLine();
+									String dateSaisie = scanner.next();
 									try { 
 										dateArrivee = LocalDate.parse(dateSaisie, formatter);
 									} catch (Exception e) {
@@ -502,9 +501,7 @@ public class Menu {
 					break;
 			}
 		}
-	}
-	// Menu des operations relatives aux reservations
-	
+	}	
 
 	// Menu des operations relatives aux besoins
 	private static void menuBesoins(Scanner scanner, BesoinService besoin_service) {
@@ -517,11 +514,103 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b, ou r): \t");
 			
-			String choix_4 = scanner.nextLine().toLowerCase();
+			String choix_4 = scanner.next().toLowerCase();
 			
 			switch (choix_4) {
 				case "a":
 					System.out.println("Recherche d'une chambre ...");
+					
+					System.out.println("Renseignez le nom de la region souhaitee (ville, province, ou pays) :\t");
+					String region = scanner.next();
+
+					System.out.println("Renseignez l'id du type d'hebergement souhaite :\t");
+					System.out.println("ID\t\tNom");
+					for(TypeHebergement typeHebergement : typesHebergement) {
+						System.out.println(typeHebergement.getId() + "\t\t" + typeHebergement.getNom());
+					}
+					int type_h = scanner.nextInt();
+					
+					System.out.println("Renseignez l'id du type de chambre souhaite :\t");
+					System.out.println("ID\t\tNom");
+					for(TypeChambre typeChambre : typesChambre) {
+						System.out.println(typeChambre.getId() + "\t\t" + typeChambre.getNom());
+					}
+					int type_c = scanner.nextInt();
+					
+					System.out.println("Renseignez l'id du service desire :\t");
+					System.out.println("ID\t\tNom");
+					for(Service _service : servicesOfferts) {
+						System.out.println(_service.getId() + "\t\t" + _service.getNom());
+					}
+					int _service = scanner.nextInt();
+
+					System.out.println("Renseignez le tarif maximum :\t");
+					double tarif_max = scanner.nextDouble();
+					
+//					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//					LocalDate dateArrivee = null;
+//					LocalDate dateDepart = null;
+//					while(dateArrivee == null) {
+//						System.out.println("Date d'arrivee souhaitee (format yyyy-MM-dd) :\t");
+//						String dateSaisie = scanner.next();
+//						try { 
+//							dateArrivee = LocalDate.parse(dateSaisie, formatter);
+//						} catch (Exception e) {
+//							System.out.println("Format de date incorrect. Veuillez réessayer."); 
+//						}
+//					}								
+//					System.out.println("La date d'arrivee saisie est : " + dateArrivee);
+//					while(dateDepart == null) {
+//						System.out.println("Date de depart souhaitee (format yyyy-MM-dd) :\t");
+//						String dateSaisie = scanner.next();
+//						try { 
+//							dateDepart = LocalDate.parse(dateSaisie, formatter);
+//						} catch (Exception e) {
+//							System.out.println("Format de date incorrect. Veuillez réessayer."); 
+//						}
+//					}								
+//					System.out.println("La date de depart saisie est : " + dateDepart);
+					
+					String resultat = "";
+					for(Hebergement _hebergement : hebergements) {
+						int index_service = Utilitaires.retrouverIndexElement(servicesOfferts, _service, Service::getId);
+						if (_hebergement.getTypeHebergement().getId() == type_h &&
+							_hebergement.getServices().contains(servicesOfferts.get(index_service)) &&
+								(_hebergement.getAdresse().getPays().equalsIgnoreCase(region) ||
+								_hebergement.getAdresse().getProvince().equalsIgnoreCase(region) ||
+								_hebergement.getAdresse().getVille().equalsIgnoreCase(region))
+							)
+						{
+							for(Chambre chambre : _hebergement.getChambres()) {
+								if (chambre.getEstDisponible()) {
+									if(chambre.getTypeChambre().getId() == type_c && chambre.getTarifNuitee() <= tarif_max) {
+										String adresse = _hebergement.getAdresse().getNumeroRue() + " RUE "
+														+ _hebergement.getAdresse().getRue().toUpperCase() + ", "
+														+ _hebergement.getAdresse().getVille().toUpperCase() + ", "
+														+ _hebergement.getAdresse().getProvince().toUpperCase() + ", "
+														+ _hebergement.getAdresse().getPays().toUpperCase();
+//										System.out.println("\nLa chambre " 
+//															+ chambre.getId() 
+//															+ " de l'hebergement " 
+//															+ _hebergement.getNom() + " situe a l'adresse "
+//															+ adresse
+//															+ " correspond aux besoins du client.");
+										resultat += resultat.concat("\nLa chambre ") 
+												.concat(Integer.toString(chambre.getId()))
+												.concat(" de l'hebergement ") 
+												.concat(_hebergement.getNom()).concat(" situe a l'adresse ").concat(adresse)
+												.concat(" correspond aux besoins du client.");
+									}
+								}									
+							}
+						}
+					}
+					if (!resultat.isEmpty()) {
+						System.out.println(resultat);						
+					} else {
+						System.out.println("Aucun emplacement ne correspond au besoin recherche.");
+					}
+					
 					
 					break;
 				case "b":

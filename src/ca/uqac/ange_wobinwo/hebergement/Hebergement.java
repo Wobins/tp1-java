@@ -145,8 +145,9 @@ public class Hebergement {
 		}
 		
         return "\n\n\n\nNom de la classe:\t Hebergement" +  "\nDescription:\t Cette classe permet de définir un hebergement" + 
-        		"\nChamps de la classe:\n\t -id (identifiant du service):\t" + this.getId() + 
+        		"\nChamps de la classe:\n\t -id (identifiant de l'hebergement):\t" + this.getId() + 
         		"\n\t -nom (nom de l'hebergement):\t" + this.getNom() +
+        		"\n\t -typeHebergement (type de l'hebergement):\t" + this.getTypeHebergement().getNom() + " (id:" + this.getTypeHebergement().getId() + " )" +
     			"\n\t -Adresse (adresse de l'hebergement):\t" + this.getAdresse().getNumeroRue()
     													 + " RUE " + this.getAdresse().getRue()
     													 + ", " + this.getAdresse().getVille() 
