@@ -584,22 +584,19 @@ public class Menu {
 							for(Chambre chambre : _hebergement.getChambres()) {
 								if (chambre.getEstDisponible()) {
 									if(chambre.getTypeChambre().getId() == type_c && chambre.getTarifNuitee() <= tarif_max) {
+										boolean disponibilite = chambre.getEstDisponible();
+										String statut = disponibilite ? "Disponible" : "Non disponible";
 										String adresse = _hebergement.getAdresse().getNumeroRue() + " RUE "
 														+ _hebergement.getAdresse().getRue().toUpperCase() + ", "
 														+ _hebergement.getAdresse().getVille().toUpperCase() + ", "
 														+ _hebergement.getAdresse().getProvince().toUpperCase() + ", "
 														+ _hebergement.getAdresse().getPays().toUpperCase();
-//										System.out.println("\nLa chambre " 
-//															+ chambre.getId() 
-//															+ " de l'hebergement " 
-//															+ _hebergement.getNom() + " situe a l'adresse "
-//															+ adresse
-//															+ " correspond aux besoins du client.");
 										resultat += resultat.concat("\nLa chambre ") 
 												.concat(Integer.toString(chambre.getId()))
 												.concat(" de l'hebergement ") 
 												.concat(_hebergement.getNom()).concat(" situe a l'adresse ").concat(adresse)
-												.concat(" correspond aux besoins du client.");
+												.concat(" correspond aux besoins du client.")
+												.concat(" (Statut: ").concat(statut).concat(")");
 									}
 								}									
 							}
