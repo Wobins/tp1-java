@@ -14,8 +14,6 @@ import java.util.List;
 public interface SystemeGestionReservations {
 	public List<Reservation> consulterReservations();
 	
-//    public List<Reservation> consulterReservationsAnnulees(bool statutAnnulation);
-	
     public Reservation trouverReservation(int id);
     
     public Reservation effectuerReservation(Reservation reservation);

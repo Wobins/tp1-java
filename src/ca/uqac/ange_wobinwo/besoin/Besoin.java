@@ -33,16 +33,16 @@ public class Besoin {
 	private LocalDate dateDepart;
 	
 	// Constructeur
-	public Besoin(double tarif) {
+	public Besoin(PotentielClient potentielClient, double tarif, TypeChambre typeChambre, TypeHebergement typeHebergement, LocalDate dateArrivee, LocalDate dateDepart) {
 		this.setId(++idCompteur);
-		this.setPotentielclient(null);
-		this.setTypeChambreSouhaite(null);
-		this.setTypeHebergementSouhaite(null);
+		this.setPotentielclient(potentielClient);
+		this.setTypeChambreSouhaite(typeChambre);
+		this.setTypeHebergementSouhaite(typeHebergement);
 		this.setAdresse(null);
 		this.setTarifMax(tarif);
-		this.setServices(null);
-		this.setDateArrivee(null);
-		this.setDateDepart(null);
+		this.setServices(new ArrayList<Service>());
+		this.setDateArrivee(dateArrivee);
+		this.setDateDepart(dateDepart);
 		this.setDateCreation(null);
 	}
 
@@ -128,6 +128,11 @@ public class Besoin {
 		this.dateArrivee = dateArrivee;
 	}
 	
+	// Ajouter un service a un besoin
+	public void ajouterService(Service service) {
+		this.services.add(service);
+	}
+	
 	// Redefinir la methode toString
 	@Override
 	public String toString() {
@@ -145,6 +150,8 @@ public class Besoin {
         		"\n\t -dateArrivee :\t " + this.getDateArrivee() + 
         		"\n\t -tarifMax :\t " + this.getTarifMax() +
         		"\n\t -services :" + services_souhaites +
-				"\n\t -Adresse :\t Ville" + this.getAdresse().getVille();
+				"\n\t -Adresse :\t (Ville: " + this.getAdresse().getVille() +
+				"\tProvince: " + this.getAdresse().getProvince() +
+				"\tPays: " + this.getAdresse().getPays() + ")";
 	}
 }

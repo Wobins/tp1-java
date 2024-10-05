@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class SystemeGestionReservationsImpl implements SystemeGestionReservations {
-	public List<Reservation> reservations;
+	private List<Reservation> reservations;
 	
 	public SystemeGestionReservationsImpl() {
 		this.reservations = new ArrayList<Reservation>();

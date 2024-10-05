@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BesoinService implements IBesoinService {
-	public List<Besoin> BesoinsEnAttente;
+	private List<Besoin> BesoinsEnAttente;
 	
 	public BesoinService() {
 		this.BesoinsEnAttente = new ArrayList<Besoin>();
