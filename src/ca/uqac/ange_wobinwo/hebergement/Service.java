@@ -1,5 +1,7 @@
 package ca.uqac.ange_wobinwo.hebergement;
 
+import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
+
 /**
  * Title:        TP1
  * Description:  TP1 pour cours 8INF957
@@ -17,21 +19,25 @@ public class Service {
 	// Constructeur
 	public Service(String nom) {
 		this.id = ++idCompteur;
-		this.setNom(nom);
+		this.nom = nom;
+		Utilitaires.logToFile("INFO", "Création d'un nouvel objet", "Service:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Getters
 	public int getId() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [id]", "Service:id#".concat(Integer.toString(this.id)));
 		return id;
 	}
 	
 	public String getNom() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [nom]", "Service:id#".concat(Integer.toString(this.id)));
 		return nom;
 	}
 	
 	// Setter
 	public void setNom(String nom) {
 		this.nom = nom;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [nom] modifiée", "Service:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Redefinir la methode toString()

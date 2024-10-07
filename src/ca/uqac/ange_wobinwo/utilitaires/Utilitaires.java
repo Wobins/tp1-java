@@ -1,6 +1,8 @@
 package ca.uqac.ange_wobinwo.utilitaires;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 
@@ -37,49 +39,21 @@ public class Utilitaires {
 		return -1;
 	}
 	
-	public static void effacerConsole() {
-		/*try {
-            // Determine the appropriate command for clearing the console based on the operating system
-            String command;
-            if (System.getProperty("os.name").startsWith("Windows")) {
-                command = "cmd /c cls";
-            } else if (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Unix")) {
-                command = "clear";
-            } else {
-                // Handle other operating systems or throw an exception if not supported
-                throw new RuntimeException("Unsupported operating system");
-            }
-
-            // Create a ProcessBuilder object with the command
-            ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
-
-            // Start the process
-            Process process = processBuilder.start();
-
-            // Wait for the process to finish
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
+	// Méthode pour écrire des informations dans un fichier .txt
+    public static void logToFile(String typeAction, String action, String detail) {
+        try (FileWriter writer = new FileWriter("log.txt", true)) {
+            writer.write(LocalDateTime.now() + "\t\t\t\t\t\t" + typeAction + "\t\t\t\t\t\t" + action + "\t\t\t\t\t\t" + detail + "\n");
+            writer.close();
+        } catch (IOException e) {
             e.printStackTrace();
-        }*/
-		
-		/*try { 
-            if (System.getProperty("os.name").contains("Windows")) { 
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
-            } else { 
-                new ProcessBuilder("clear").inheritIO().start().waitFor(); 
-            } 
-        } catch (Exception e) { 
-            e.printStackTrace(); 
-        } */
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	}
-
+        }
+    }
+	
 	@Override
 	public String toString() {
 		return "\n\nClasse des methodes utilitaires pour des actions precises: "
 				+ "\n\t-retrouverIndexElement: \tRetrouver un element dans un objet de type List grace a son index "
-				+ "\n\t-supprimerElementListe: \tSupprimer un element d'un objet de type List "
-				+ "\n\t-effacerConsole: \tEffacer les elements affiches au niveau du terminal";
+				+ "\n\t-supprimerElementListe: \tSupprimer un element d'un objet de type List ";
 	}
 	
 	

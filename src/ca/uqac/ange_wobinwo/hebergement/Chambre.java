@@ -1,5 +1,7 @@
 package ca.uqac.ange_wobinwo.hebergement;
 
+import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
+
 /**
  * Title:        TP1
  * Description:  TP1 pour cours 8INF957
@@ -18,44 +20,53 @@ public class Chambre {
 
 	// Constructeur
 	public Chambre(TypeChambre typeChambre, double tarif) {
-		this.setId(++idCompteur);
-		this.setTypeChambre(typeChambre);
-		this.setTarifNuitee(tarif);
+		this.id = ++idCompteur;
+		this.typeChambre = typeChambre;
+		this.tarifNuitee = tarif;
 		this.estDisponible = true;
+		Utilitaires.logToFile("INFO", "Création d'un nouvel objet", "Chambre:id#".concat(Integer.toString(this.id)));
 	}
 
 	// Getters
 	public int getId() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [id]", "Chambre:id#".concat(Integer.toString(this.id)));
 		return id;
 	}
 	
 	public TypeChambre getTypeChambre() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [typeChambre]", "Chambre:id#".concat(Integer.toString(this.id)));
 		return typeChambre;
 	}
 	
 	public Boolean getEstDisponible() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [estFisponible]", "Chambre:id#".concat(Integer.toString(this.id)));
 		return estDisponible;
 	}
 	
 	public double getTarifNuitee() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [tarifNuitee]", "Chambre:id#".concat(Integer.toString(this.id)));
 		return tarifNuitee;
 	}
 
 	// Setters
 	public void setId(int numero) {
 		this.id = numero;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [id] modifiée", "Chambre:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setTypeChambre(TypeChambre typeChambre) {
 		this.typeChambre = typeChambre;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [typeChambre] modifiée", "Chambre:id#".concat(Integer.toString(this.id)));
 	}
 	
 	public void setEstDisponible(boolean estDisponible) {
 		this.estDisponible = estDisponible;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [estDisponible] modifiée", "Chambre:id#".concat(Integer.toString(this.id)));
 	}
 	
 	public void setTarifNuitee(double tarifNuitee) {
 		this.tarifNuitee = tarifNuitee;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [tarifNuitee] modifiée", "Chambre:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Redefinir la methode toString()

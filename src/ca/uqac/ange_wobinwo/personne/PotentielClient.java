@@ -1,5 +1,7 @@
 package ca.uqac.ange_wobinwo.personne;
 
+import ca.uqac.ange_wobinwo.utilitaires.Utilitaires;
+
 /**
  * Title:        TP1
  * Description:  TP1 pour cours 8INF957
@@ -15,35 +17,42 @@ public class PotentielClient {
 	protected String numeroPhone;
 	
 	public PotentielClient(String nom, String courriel, String numeroPhone) {
-		this.setNom(nom);
-		this.setCourriel(courriel);
-		this.setNumeroPhone(numeroPhone);
+		this.nom = nom;
+		this.courriel = courriel;
+		this.numeroPhone = numeroPhone;
+		Utilitaires.logToFile("INFO", "Création d'un nouvel objet", "PotentielClient:courriel#".concat(this.courriel));
 	}
 	
 	// Getters
 	public String getNom() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [nom]", "PotentielClient:courriel#".concat(this.courriel));
 		return nom;
 	}
 
 	public String getCourriel() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [courriel]", "PotentielClient:courriel#".concat(this.courriel));
 		return courriel;
 	}
 
 	public String getNumeroPhone() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [nunumeroPhone]", "PotentielClient:courriel#".concat(this.courriel));
 		return numeroPhone;
 	}
 
 	//Setters
 	public void setNom(String nom) {
 		this.nom = nom;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [nom] modifiée", "PotentielClient:courriel#".concat(this.courriel));
 	}
 
 	public void setCourriel(String courriel) {
 		this.courriel = courriel;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [courriel] modifiée", "PotentielClient:courriel#".concat(this.courriel));
 	}
 
 	public void setNumeroPhone(String numeroPhone) {
 		this.numeroPhone = numeroPhone;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [numeroPhone] modifiée", "PotentielClient:courriel#".concat(this.courriel));
 	}
 	
 	// Redefinir la methode toString()

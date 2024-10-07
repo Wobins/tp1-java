@@ -26,79 +26,98 @@ public class Hebergement {
 
 	// Constructeur
 	public Hebergement(String nom) {
-		this.setId(++idCompteur);
-		this.setNom(nom);
+		this.id = ++idCompteur;
+		this.nom = nom;
 		this.services = new ArrayList<Service>();
 		this.chambres = new ArrayList<Chambre>();
+		Utilitaires.logToFile("INFO", "Création d'un nouvel objet", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	// Getters
 	public int getId() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [id]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return id;
 	}
 	
 	public Adresse getAdresse() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [adresse]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return adresse;
 	}
 
 	public String getNom() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [nom]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return nom;
 	}
 	
 	public ArrayList<Service> getServices() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [services]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return services;
 	}
 	
 	public TypeHebergement getTypeHebergement() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [typeHebergement]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return typeHebergement;
 	}
 	
 	public ArrayList<Chambre> getChambres() {
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [chambre]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return chambres;
 	}
 
 	public int getNombreChambres() {
 		nombreChambres = chambres.size();
+		Utilitaires.logToFile("INFO", "Récuperation de l'attribut [nombreChambres]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		return nombreChambres;
 	}
 
 	// Setters
 	public void setId(int id) {
 		this.id = id;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [id] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [adresse] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [nom] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setServices(ArrayList<Service> services) {
 		this.services = services;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [services] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setTypeHebergement(TypeHebergement typeHebergement) {
 		this.typeHebergement = typeHebergement;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [typeHebergement] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	public void setChambres(ArrayList<Chambre> chambres) {
 		this.chambres = chambres;
+		Utilitaires.logToFile("WARNING", "Valeur de l'attribut [chambres] modifiée", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Ajouter une chambre a un hebergement
 	public void ajouterChambre(Chambre chambre) {
+		Utilitaires.logToFile("INFO", "Début d'éxécution de la méthode [ajouterChambre]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		chambres.add(chambre);
+		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [ajouterChambre]", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	// Ajouter un service a un hebergement
 	public void ajouterService(Service service) {
+		Utilitaires.logToFile("INFO", "Début d'éxécution de la méthode [ajouterService]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		services.add(service);
+		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [ajouterService]", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Supprimer une chambre d'un hebergement
 	public void supprimerChambre(int numeroChambre) {
+		Utilitaires.logToFile("INFO", "Début d'éxécution de la méthode [supprimerChambre]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		int resultat = Utilitaires.supprimerElementListe(chambres, numeroChambre, Chambre::getId);
 		
 		if (resultat != -1) {
@@ -108,10 +127,12 @@ public class Hebergement {
 		    System.out.println(String.format("La chambre avec pour numero %s n'a pas ete trouvee dans l'hebergement %s.",
 		    					numeroChambre, this.getNom()));
 		}
+		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [supprimerChambre]", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 
 	// Supprimer un service d'un hebergement
 	public void supprimerService(int idService) {
+		Utilitaires.logToFile("INFO", "Début d'éxécution de la méthode [supprimerService]", "Hebergement:id#".concat(Integer.toString(this.id)));
 		int resultat = Utilitaires.supprimerElementListe(services, idService, Service::getId);
 		
 		if (resultat != -1) {
@@ -121,6 +142,7 @@ public class Hebergement {
 			System.out.println(String.format("Le service avec pour id %s n'est pas offert par l'hebergement %s.",
 					idService, this.getNom()));
 		}
+		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [supprimerService]", "Hebergement:id#".concat(Integer.toString(this.id)));
 	}
 	
 	// Redefinir la methode toString()

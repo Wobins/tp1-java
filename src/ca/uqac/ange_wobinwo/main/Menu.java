@@ -40,6 +40,8 @@ public class Menu {
 
 	// Initialisation des donnees de base (services, types de chambre et types d'hebergement)
 	private static void Initialisation() {
+		Utilitaires.logToFile("INFO", "Début d'éxécution de la méthode [Initialisation]", "Menu");
+		
 		// Initialisation des types de chambre
 		typesChambre.add(new TypeChambre("Simple"));
 		typesChambre.add(new TypeChambre("Double"));
@@ -84,10 +86,12 @@ public class Menu {
 		leParc.getServices().add(servicesOfferts.get(3));
 		leParc.getServices().add(servicesOfferts.get(1));
 		hebergements.add(leParc);
+		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [Initialisation]", "Menu");
 	}
 
 	// Menu principal
 	public static void Main() {
+		Utilitaires.logToFile("INFO", "Ouverture du menu principal", "Menu");
 		Initialisation();
 		SystemeGestionReservationsImpl systeme_gestion = new SystemeGestionReservationsImpl();
 		BesoinService besoin_service = new BesoinService();
@@ -108,16 +112,24 @@ public class Menu {
 			
 			switch (choixPrincipal) {
 				case 1:
+					Utilitaires.logToFile("INFO", "Ouverture du sous-menu [Clients]", "Menu");
 					menuClients(scanner);
+					Utilitaires.logToFile("INFO", "Fermeture du sous-menu [Clients]", "Menu");
 					break;
 				case 2:
+					Utilitaires.logToFile("INFO", "Ouverture du sous-menu [Hebergements]", "Menu");
 					menuHebergements(scanner);
+					Utilitaires.logToFile("INFO", "Fermeture du sous-menu [Hebergements]", "Menu");
 					break;
 				case 3:
+					Utilitaires.logToFile("INFO", "Ouverture du sous-menu [Reservations]", "Menu");
 					menuReservations(scanner, systeme_gestion);
+					Utilitaires.logToFile("INFO", "Fermeture du sous-menu [Reservations]", "Menu");
 					break;
 				case 4:
+					Utilitaires.logToFile("INFO", "Ouverture du sous-menu [Besoins]", "Menu");
 	                menuBesoins(scanner, besoin_service);
+	                Utilitaires.logToFile("INFO", "Fermeture du sous-menu [Besoins]", "Menu");
 					break;
 				case 0:
 					System.out.println("Êtes-vous sûr de vouloir quitter ? (Oui/Non) \t");
@@ -134,6 +146,7 @@ public class Menu {
 		}
 
 		scanner.close();
+		Utilitaires.logToFile("INFO", "Fermeture du menu principal", "Menu");
 	}
 
 	// Menu des operations sur les clients
@@ -154,12 +167,12 @@ public class Menu {
 			case "a":
 				System.out.println("\n Enregistrement des clients...");
 				System.out.println("Entrez le nom : \t");
-				String nom = scanner.nextLine().toLowerCase();
+				String nom = scanner.next();
 				System.out.println("Entrez le courriel : \t");
-				String courriel = scanner.nextLine().toLowerCase();
+				String courriel = scanner.next();
 				System.out.println("Entrez le numero de telephone : \t");
-				String numeroTel = scanner.nextLine().toLowerCase();
-				Client _client = new Client(nom, courriel, numeroTel);
+				String numeroTel = scanner.next();
+				Client _client = new Client(nom.toUpperCase(), courriel, numeroTel);
 				clients.add(_client);
 				System.out.println(_client);
 				
