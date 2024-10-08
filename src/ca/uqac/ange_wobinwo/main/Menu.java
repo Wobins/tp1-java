@@ -62,30 +62,30 @@ public class Menu {
 		servicesOfferts.add(new Service("Dépanneur"));
 		servicesOfferts.add(new Service("Restaurant"));
 
-		Client ange = new Client("Ange W.", "wobinwoange@yahoo.com", "418 714-7089");
-		clients.add(ange);
-		
-		Adresse address = new Adresse(300, "Newton", "Ottawa", "Maine", "USA");
-		adresses.add(address);
-		
-		Chambre ch1 = new Chambre(typesChambre.get(0), 55.5);
-		ch1.setId(101);
-		Chambre ch2 = new Chambre(typesChambre.get(0), 44);
-		ch2.setEstDisponible(false);
-		Chambre ch3 = new Chambre(typesChambre.get(0), 35.99);
-		ch2.setEstDisponible(false);
-		chambres.add(ch1);
-		chambres.add(ch2);
-		chambres.add(ch3);
-		
-		Hebergement leParc = new Hebergement("Residence Le Parc");
-		leParc.getChambres().add(ch1);
-		leParc.getChambres().add(ch2);
-		leParc.setAdresse(address);
-		leParc.setTypeHebergement(typesHebergement.get(2));
-		leParc.getServices().add(servicesOfferts.get(3));
-		leParc.getServices().add(servicesOfferts.get(1));
-		hebergements.add(leParc);
+//		Client ange = new Client("Ange W.", "wobinwoange@yahoo.com", "418 714-7089");
+//		clients.add(ange);
+//		
+//		Adresse address = new Adresse(300, "Newton", "Ottawa", "Maine", "USA");
+//		adresses.add(address);
+//		
+//		Chambre ch1 = new Chambre(typesChambre.get(0), 55.5);
+//		ch1.setId(101);
+//		Chambre ch2 = new Chambre(typesChambre.get(0), 44);
+//		ch2.setEstDisponible(false);
+//		Chambre ch3 = new Chambre(typesChambre.get(0), 35.99);
+//		ch2.setEstDisponible(false);
+//		chambres.add(ch1);
+//		chambres.add(ch2);
+//		chambres.add(ch3);
+//		
+//		Hebergement leParc = new Hebergement("Residence Le Parc");
+//		leParc.getChambres().add(ch1);
+//		leParc.getChambres().add(ch2);
+//		leParc.setAdresse(address);
+//		leParc.setTypeHebergement(typesHebergement.get(2));
+//		leParc.getServices().add(servicesOfferts.get(3));
+//		leParc.getServices().add(servicesOfferts.get(1));
+//		hebergements.add(leParc);
 		Utilitaires.logToFile("SUCCESS", "Fin d'éxécution de la méthode [Initialisation]", "Menu");
 	}
 
@@ -161,17 +161,17 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b ou r): \t");
 
-			String choix_1 = scanner.next();
+			String choix_1 = scanner.nextLine();
 
 			switch (choix_1.toLowerCase()) {
 			case "a":
 				System.out.println("\n Enregistrement des clients...");
 				System.out.println("Entrez le nom : \t");
-				String nom = scanner.next();
+				String nom = scanner.nextLine();
 				System.out.println("Entrez le courriel : \t");
-				String courriel = scanner.next();
+				String courriel = scanner.nextLine();
 				System.out.println("Entrez le numero de telephone : \t");
-				String numeroTel = scanner.next();
+				String numeroTel = scanner.nextLine();
 				Client _client = new Client(nom.toUpperCase(), courriel, numeroTel);
 				clients.add(_client);
 				System.out.println(_client);
@@ -207,9 +207,9 @@ public class Menu {
 			case "r":
 				retour = true;
 				break;
-                default:
-                    System.out.println("Choix invalide. Veuillez réessayer.***1");
-                    break;
+//                default:
+//                    System.out.println("Choix invalide. Veuillez réessayer.***1");
+//                    break;
 			}
 		}
 	}
@@ -228,48 +228,46 @@ public class Menu {
 			System.out.println("r. Retour");
 			System.out.println("Choisissez une option (a, b, c, d, e ou r): \t");
 
-			String choix_2 = scanner.next();
+			String choix_2 = scanner.nextLine();
 
 			switch (choix_2.toLowerCase()) {
 				case "a":
 					System.out.println("\nEnregistrement d'un hebergement ...");
-					boolean continuer = true;
-					while (continuer) {
-						System.out.println("Entrez le nom de l'hebergement : \t");
-						String nom = scanner.nextLine();
-						Hebergement nouvel_hebergement = new Hebergement(nom);
-	
-						System.out.println("Dans quel pays est il situe ? : \t");
-						String _pays = scanner.nextLine().toUpperCase();
-						System.out.println("Dans quelle province est il situe ? : \t");
-						String _province = scanner.nextLine().toUpperCase();
-						System.out.println("Dans quelle ville est il situe ? : \t");
-						String _ville = scanner.nextLine().toUpperCase();
-						System.out.println("Dans quelle rue est il situe ? : \t");
-						String _rue = scanner.nextLine().toUpperCase();
-						System.out.println("Quel est le numero de rue ? : \t");
-						int numero_rue = scanner.nextInt();
-	
-						System.out.println(
-								"Veuillez faire 1 choix parmi les types d'hebergement suivants (1, 2, 3 ou 4) : \t");
-						typesHebergement.forEach(_typeHebergement -> System.out
-								.println(_typeHebergement.getId() + ")" + _typeHebergement.getNom()));
-	
-						System.out.println("Veuillez choisir parmi les services offerts suivants (1 ou 2 ou 3 etc.) : \t");
-						servicesOfferts.forEach(
-								serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
-						int service_id = scanner.nextInt();
-						int index = Utilitaires.retrouverIndexElement(servicesOfferts, service_id, Service::getId);
-						nouvel_hebergement.ajouterService(servicesOfferts.get(index));
-	
-						Adresse nouvelle_adresse = new Adresse(numero_rue, _rue, _ville, _province, _pays);
-						adresses.add(nouvelle_adresse);
-						nouvel_hebergement.setAdresse(nouvelle_adresse);
-						hebergements.add(nouvel_hebergement);
-						System.out.println(nouvel_hebergement);
-	
-						continuer = false;
-					}
+					System.out.println("Entrez le nom de l'hebergement :");
+					String _nom = scanner.nextLine();
+					System.out.println("Dans quel pays est il situe ? :");
+					String _pays = scanner.nextLine();
+					System.out.println("Dans quelle province est il situe ? : \t");
+					String _province = scanner.nextLine();
+					System.out.println("Dans quelle ville est il situe ? : \t");
+					String _ville = scanner.nextLine();
+					System.out.println("Dans quelle rue est il situe ? : \t");
+					String _rue = scanner.nextLine();
+					System.out.println("Quel est le numero de rue ? : \t");
+					int numero_rue = scanner.nextInt();
+					
+					System.out.println("Veuillez faire 1 choix parmi les types d'hebergement suivants (1, 2, 3 ou 4) : \t");
+					typesHebergement.forEach(_typeHebergement -> System.out
+							.println(_typeHebergement.getId() + ")" + _typeHebergement.getNom()));
+					int hebergement_id1 = scanner.nextInt();
+					int index1 = Utilitaires.retrouverIndexElement(typesHebergement, hebergement_id1, TypeHebergement::getId);
+					
+					System.out.println("Veuillez choisir parmi les services offerts suivants (1 ou 2 ou 3 etc.) : \t");
+					servicesOfferts.forEach(
+							serviceOffert -> System.out.println(serviceOffert.getId() + ")" + serviceOffert.getNom()));
+					int service_id1 = scanner.nextInt();
+					int index = Utilitaires.retrouverIndexElement(servicesOfferts, service_id1, Service::getId);
+					
+					Adresse nouvelle_adresse = new Adresse(numero_rue, _rue, _ville, _province, _pays);
+					adresses.add(nouvelle_adresse);
+					
+					Hebergement nouvel_hebergement = new Hebergement(_nom);
+					nouvel_hebergement.ajouterService(servicesOfferts.get(index));
+					nouvel_hebergement.setTypeHebergement(typesHebergement.get(index1));
+					nouvel_hebergement.setAdresse(nouvelle_adresse);
+					
+					hebergements.add(nouvel_hebergement);
+					System.out.println(nouvel_hebergement);
 					break;
 				case "b":
 					System.out.println("Ajout d'une chambre a l'hebergement...");
@@ -355,9 +353,9 @@ public class Menu {
 				case "r":
 					retour = true;
 					break;
-				default:
-					System.out.println("Choix invalide. Veuillez réessayer.***2");
-					break;
+//				default:
+//					System.out.println("Choix invalide. Veuillez réessayer.***2");
+//					break;
 				}
 		}
 	}
@@ -409,7 +407,8 @@ public class Menu {
 								if (_chambre.getEstDisponible()) {
 									++i;
 									chambresDispo.append("\n").append(_chambre.getId()).append("\t\t")
-											.append(_chambre.getTarifNuitee());
+											.append(_chambre.getTypeChambre().getNom())
+											.append("\t\t").append(_chambre.getTarifNuitee());
 								}
 							}
 	
@@ -418,7 +417,7 @@ public class Menu {
 								int nombre_nuits = scanner.nextInt();
 	
 								System.out.println("Renseigner l'id de la chambre (1, 2, ou 3, etc.):\t");
-								System.out.println("ID\t\tTarif");
+								System.out.println("ID\t\tType\t\tTarif");
 								System.out.println(chambresDispo);
 								int chambre_id = scanner.nextInt();
 								int indexChambre = Utilitaires.retrouverIndexElement(chambres, chambre_id, Chambre::getId);
@@ -505,9 +504,9 @@ public class Menu {
 				case "r":
 					retour = true;
 					break;
-				default:
-					System.out.println("Choix invalide. Veuillez réessayer.***3");
-					break;
+//				default:
+//					System.out.println("Choix invalide. Veuillez réessayer.***3");
+//					break;
 			}
 		}
 	}	
@@ -634,11 +633,11 @@ public class Menu {
 						String confirmation = scanner.next();
 						if (confirmation.equalsIgnoreCase("Oui")) {
 							System.out.println("Enrez le nom du potentiel client :\t");
-							String nom_potentielClient = scanner.next();
+							String nom_potentielClient = scanner.nextLine();
 							System.out.println("Enrez le numero de telephone du potentiel client :\t");
-							String tel_potentielClient = scanner.next();
+							String tel_potentielClient = scanner.nextLine();
 							System.out.println("Enrez l'adresse courriel du potentiel client :\t");
-							String courriel_potentielClient = scanner.next();
+							String courriel_potentielClient = scanner.nextLine();
 							PotentielClient _potentielClient = new PotentielClient(nom_potentielClient, courriel_potentielClient, tel_potentielClient);
 							int index_type_hebergement = Utilitaires.retrouverIndexElement(typesHebergement, type_h, TypeHebergement::getId);
 							int index_type_chambre = Utilitaires.retrouverIndexElement(typesChambre, type_c, TypeChambre::getId);
@@ -681,9 +680,9 @@ public class Menu {
 				case "r":
 					retour = true;
 					break;
-				default:
-					System.out.println("Choix invalide. Veuillez réessayer.***4");
-					break;
+//				default:
+//					System.out.println("Choix invalide. Veuillez réessayer.***4");
+//					break;
 			}
 		}
 	}

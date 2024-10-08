@@ -165,7 +165,7 @@ public class Reservation {
         		"\n\t -montantFacture :\t " + this.getMontantFacture() + 
         		"\n\t -Client :\t (Id: " + this.getClient().getId() + "\tNom: " + this.getClient().getNom() + ")" +
         		"\n\t -Hebergement :\t (Id: " + this.getHebergement().getId() + "\tNom: " + this.getHebergement().getNom() + ")" +
-        		"\n\t -Chambre :\t (Id: " + this.getChambre().getId() + "\tTarif/Nuit: " + this.getChambre().getTarifNuitee() + "$)" +
+        		"\n\t -Chambre :\t (Id: " + this.getChambre().getId() + "\tType: " + this.chambre.getTypeChambre().getNom() + "\tTarif/Nuit: " + this.getChambre().getTarifNuitee() + "$)" +
         		"\n\t -estAnnulee :\t " + this.isEstAnnulee();
 	}
 

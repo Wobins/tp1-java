@@ -3,6 +3,7 @@ package ca.uqac.ange_wobinwo.utilitaires;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.function.Function;
 
@@ -42,7 +43,7 @@ public class Utilitaires {
 	// Méthode pour écrire des informations dans un fichier .txt
     public static void logToFile(String typeAction, String action, String detail) {
         try (FileWriter writer = new FileWriter("log.txt", true)) {
-            writer.write(LocalDateTime.now() + "\t\t\t\t\t\t" + typeAction + "\t\t\t\t\t\t" + action + "\t\t\t\t\t\t" + detail + "\n");
+            writer.write(ZonedDateTime.now() + " [" + typeAction + "] " + action + " - Classe: " + detail + "\n");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
